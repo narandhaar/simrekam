@@ -5,14 +5,24 @@
  */
 package app.view;
 
+import app.controller.ManajemenDosen;
+import app.controller.db;
+import app.model.md_login;
+
 /**
  *
  * @author ran
  */
 public class main {
     public static void main(String [] args){
-        home_admin ha = new home_admin();
-        ha.setVisible(true);
+//        home_admin adm = new home_admin();
+//        adm.setVisible(true);
+
+//            login lg = new login();
+//            lg.setVisible(true);
+
+        db db = new db();
+        db.connect();
     }
     
 }
