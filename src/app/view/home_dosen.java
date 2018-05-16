@@ -3,6 +3,7 @@ package app.view;
 import app.controller.ManajemenDosen;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -28,6 +29,8 @@ public class home_dosen extends javax.swing.JFrame {
        
         mainPanel.add("menu",menu);
         mainPanel.add("jadwal",jadwal);
+        mainPanel.add("rekapan",rekapanDosen);
+        mainPanel.add("isi",isiPresensi);
         
         CardLayout cl = (CardLayout)(mainPanel.getLayout());
         cl.show(mainPanel,"menu");
@@ -48,17 +51,38 @@ public class home_dosen extends javax.swing.JFrame {
         jadwal = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
-        hapusDosen3 = new javax.swing.JButton();
-        t_tambahMhs1 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        t_tambahMhs2 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         menu = new javax.swing.JPanel();
-        t_krs = new javax.swing.JButton();
         t_jadwal = new javax.swing.JButton();
-        t_presensi = new javax.swing.JButton();
+        t_rekapan = new javax.swing.JButton();
+        t_isiPresensi1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        rekapanDosen = new javax.swing.JPanel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable5 = new javax.swing.JTable();
+        jLabel24 = new javax.swing.JLabel();
+        isiPresensi = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable6 = new javax.swing.JTable();
+        jButton12 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jButton2 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         panelAtas = new javax.swing.JPanel();
+        jButton16 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,33 +109,6 @@ public class home_dosen extends javax.swing.JFrame {
 
         jadwal.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 1280, 90));
 
-        hapusDosen3.setText("Hapus");
-        hapusDosen3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hapusDosen3ActionPerformed(evt);
-            }
-        });
-        jadwal.add(hapusDosen3, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 280, -1, -1));
-
-        t_tambahMhs1.setText("Ubah");
-        t_tambahMhs1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                t_tambahMhs1ActionPerformed(evt);
-            }
-        });
-        jadwal.add(t_tambahMhs1, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 280, -1, -1));
-
-        jButton4.setText("Lihat presensi");
-        jadwal.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 280, -1, -1));
-
-        t_tambahMhs2.setText("Tambah");
-        t_tambahMhs2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                t_tambahMhs2ActionPerformed(evt);
-            }
-        });
-        jadwal.add(t_tambahMhs2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 280, -1, -1));
-
         jButton11.setText("Kembali");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,22 +117,14 @@ public class home_dosen extends javax.swing.JFrame {
         });
         jadwal.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/jdwl_1.png"))); // NOI18N
+        jadwal.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 620));
+
         mainPanel.add(jadwal, "card7");
 
         menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        t_krs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/menu_jadwal.png"))); // NOI18N
-        t_krs.setBorder(null);
-        t_krs.setBorderPainted(false);
-        t_krs.setContentAreaFilled(false);
-        t_krs.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                t_krsActionPerformed(evt);
-            }
-        });
-        menu.add(t_krs, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 220, -1, -1));
-
-        t_jadwal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/menu_jadwal.png"))); // NOI18N
+        t_jadwal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/jdwl.png"))); // NOI18N
         t_jadwal.setBorder(null);
         t_jadwal.setBorderPainted(false);
         t_jadwal.setContentAreaFilled(false);
@@ -144,90 +133,202 @@ public class home_dosen extends javax.swing.JFrame {
                 t_jadwalActionPerformed(evt);
             }
         });
-        menu.add(t_jadwal, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 220, -1, -1));
+        menu.add(t_jadwal, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, 160, 160));
 
-        t_presensi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/menu_jadwal.png"))); // NOI18N
-        t_presensi.setBorder(null);
-        t_presensi.setBorderPainted(false);
-        t_presensi.setContentAreaFilled(false);
-        t_presensi.addActionListener(new java.awt.event.ActionListener() {
+        t_rekapan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/rekap.png"))); // NOI18N
+        t_rekapan.setBorder(null);
+        t_rekapan.setBorderPainted(false);
+        t_rekapan.setContentAreaFilled(false);
+        t_rekapan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                t_presensiActionPerformed(evt);
+                t_rekapanActionPerformed(evt);
             }
         });
-        menu.add(t_presensi, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 220, -1, -1));
+        menu.add(t_rekapan, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 230, -1, -1));
+
+        t_isiPresensi1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/isi.png"))); // NOI18N
+        t_isiPresensi1.setBorder(null);
+        t_isiPresensi1.setBorderPainted(false);
+        t_isiPresensi1.setContentAreaFilled(false);
+        t_isiPresensi1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_isiPresensi1ActionPerformed(evt);
+            }
+        });
+        menu.add(t_isiPresensi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 230, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 290, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 620, Short.MAX_VALUE)
-        );
+        jLabel33.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(0, 51, 51));
+        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel33.setText("Dosen");
+        jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 290, 40));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/prof.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 620));
 
         menu.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 620));
 
         mainPanel.add(menu, "card3");
 
+        rekapanDosen.setMaximumSize(new java.awt.Dimension(1081, 618));
+        rekapanDosen.setMinimumSize(new java.awt.Dimension(1081, 618));
+        rekapanDosen.setPreferredSize(new java.awt.Dimension(1081, 618));
+        rekapanDosen.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTextField2.setText("Cari ...");
+        rekapanDosen.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 280, 30));
+
+        jLabel17.setText("Filter");
+        rekapanDosen.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, -1, -1));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matakuliah", "Item 2", "Item 3", "Item 4" }));
+        rekapanDosen.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 160, 30));
+
+        jButton6.setText("Cari");
+        rekapanDosen.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 170, 70, 30));
+
+        jButton7.setText("Kembali");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        rekapanDosen.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        jTable5.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "No", "Hari", "Tanggal", "Kode Matakuliah", "Matakuliah", "Pertemuan", "Materi"
+            }
+        ));
+        jScrollPane5.setViewportView(jTable5);
+
+        rekapanDosen.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 1260, 90));
+
+        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/rekap_1.png"))); // NOI18N
+        rekapanDosen.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 620));
+
+        mainPanel.add(rekapanDosen, "card3");
+
+        isiPresensi.setPreferredSize(new java.awt.Dimension(1081, 618));
+        isiPresensi.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "No", "Hari", "Jam Mulai", "Jam Selesai", "Kode Matakuliah", "Nama Matakuliah", "Kelas", "Ruang"
+            }
+        ));
+        jScrollPane6.setViewportView(jTable6);
+
+        isiPresensi.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 1280, 90));
+
+        jButton12.setText("Kembali");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+        isiPresensi.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        jButton1.setText("Ubah");
+        isiPresensi.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 430, 100, 30));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pemrograman Berorientasi Obyek 2", "Item 2", "Item 3", "Item 4" }));
+        isiPresensi.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 300, 30));
+
+        jLabel2.setText("Pilih matakuliah");
+        isiPresensi.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, -1, -1));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        isiPresensi.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 300, 100));
+
+        jButton2.setText("Simpan");
+        isiPresensi.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 360, 100, 30));
+
+        jLabel4.setText("Status                         : ");
+        isiPresensi.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, -1, -1));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/isi_1.png"))); // NOI18N
+        isiPresensi.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 620));
+
+        mainPanel.add(isiPresensi, "card7");
+
         getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 1366, 618));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/panelAtas.png"))); // NOI18N
+        panelAtas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout panelAtasLayout = new javax.swing.GroupLayout(panelAtas);
-        panelAtas.setLayout(panelAtasLayout);
-        panelAtasLayout.setHorizontalGroup(
-            panelAtasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        panelAtasLayout.setVerticalGroup(
-            panelAtasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAtasLayout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addGap(0, 1, Short.MAX_VALUE))
-        );
+        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/logout(3).png"))); // NOI18N
+        jButton16.setBorderPainted(false);
+        jButton16.setContentAreaFilled(false);
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+        panelAtas.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 40, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/panelAtas.png"))); // NOI18N
+        panelAtas.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, -1));
 
         getContentPane().add(panelAtas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 150));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void t_rekapanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_rekapanActionPerformed
+        CardLayout cl = (CardLayout)(mainPanel.getLayout());
+        cl.show(mainPanel,"rekapan");
+    }//GEN-LAST:event_t_rekapanActionPerformed
+
     private void t_jadwalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_jadwalActionPerformed
         CardLayout cl = (CardLayout)(mainPanel.getLayout());
-        cl.show(mainPanel,"matakuliah");
-    }//GEN-LAST:event_t_jadwalActionPerformed
-
-    private void t_presensiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_presensiActionPerformed
-        CardLayout cl = (CardLayout)(mainPanel.getLayout());
         cl.show(mainPanel,"jadwal");
-    }//GEN-LAST:event_t_presensiActionPerformed
-
-    private void t_krsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_krsActionPerformed
-        CardLayout cl = (CardLayout)(mainPanel.getLayout());
-        cl.show(mainPanel,"dosen");
-    }//GEN-LAST:event_t_krsActionPerformed
-
-    private void hapusDosen3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusDosen3ActionPerformed
-
-    }//GEN-LAST:event_hapusDosen3ActionPerformed
-
-    private void t_tambahMhs1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_tambahMhs1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_t_tambahMhs1ActionPerformed
-
-    private void t_tambahMhs2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_tambahMhs2ActionPerformed
-        CardLayout cl = (CardLayout)(mainPanel.getLayout());
-        cl.show(mainPanel,"tb_jadwal");
-    }//GEN-LAST:event_t_tambahMhs2ActionPerformed
+    }//GEN-LAST:event_t_jadwalActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         CardLayout cl = (CardLayout)(mainPanel.getLayout());
         cl.show(mainPanel,"menu");
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void t_isiPresensi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_isiPresensi1ActionPerformed
+        CardLayout cl = (CardLayout)(mainPanel.getLayout());
+        cl.show(mainPanel,"isi");
+    }//GEN-LAST:event_t_isiPresensi1ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        CardLayout cl = (CardLayout)(mainPanel.getLayout());
+        cl.show(mainPanel,"menu");
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        CardLayout cl = (CardLayout)(mainPanel.getLayout());
+        cl.show(mainPanel,"menu");
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+           int close = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin keluar?", "Pesan keluar", JOptionPane.YES_NO_OPTION);
+        
+        if(close == JOptionPane.YES_OPTION){
+            System.exit(0);
+        } 
+    }//GEN-LAST:event_jButton16ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,21 +369,42 @@ public class home_dosen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton hapusDosen3;
+    private javax.swing.JPanel isiPresensi;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTable jTable4;
+    private javax.swing.JTable jTable5;
+    private javax.swing.JTable jTable6;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel jadwal;
     public javax.swing.JPanel mainPanel;
     private javax.swing.JPanel menu;
     private javax.swing.JPanel panelAtas;
+    public javax.swing.JPanel rekapanDosen;
+    private javax.swing.JButton t_isiPresensi1;
     private javax.swing.JButton t_jadwal;
-    private javax.swing.JButton t_krs;
-    private javax.swing.JButton t_presensi;
-    private javax.swing.JButton t_tambahMhs1;
-    private javax.swing.JButton t_tambahMhs2;
+    private javax.swing.JButton t_rekapan;
     // End of variables declaration//GEN-END:variables
 }

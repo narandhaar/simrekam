@@ -20,6 +20,8 @@ public class login extends javax.swing.JFrame {
      */
     private ManajemenUser usr;
     private home_admin adm = new home_admin();
+    private home_dosen dsn = new home_dosen();
+    private home_mahasiswa mhs = new home_mahasiswa();
     private md_login login;
     
     public login() {
@@ -47,44 +49,55 @@ public class login extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         txtusername = new javax.swing.JTextField();
         txtpassword = new javax.swing.JPasswordField();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("jButton1");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/login1.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 550, 120, 50));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 560, 140, 50));
 
-        txtusername.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtusername.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        txtusername.setForeground(new java.awt.Color(95, 44, 130));
         txtusername.setBorder(null);
-        getContentPane().add(txtusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 430, 210, 40));
+        getContentPane().add(txtusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 440, 210, 40));
 
-        txtpassword.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtpassword.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        txtpassword.setForeground(new java.awt.Color(95, 44, 130));
         txtpassword.setBorder(null);
         getContentPane().add(txtpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 500, 210, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/login.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/login.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        usr.cekLogin();
-        try {
             if(usr.getStatus()=="adm"){
                 JOptionPane.showMessageDialog(rootPane, "Berhasil login sebagai admin");
                 adm.setVisible(true);
                 this.dispose();
+            } else if (usr.getStatus()=="dsn"){
+                JOptionPane.showMessageDialog(rootPane, "Berhasil login sebagai dosen");
+                dsn.setVisible(true);
+                this.dispose();
+            } else if (usr.getStatus()=="mhs"){
+                 JOptionPane.showMessageDialog(rootPane, "Berhasil login sebagai mahasiswa");
+                mhs.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Password/Username salah");
             }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+ 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -124,7 +137,7 @@ public class login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField txtpassword;
     private javax.swing.JTextField txtusername;
     // End of variables declaration//GEN-END:variables

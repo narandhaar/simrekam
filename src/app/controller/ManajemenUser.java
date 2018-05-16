@@ -34,7 +34,11 @@ public class ManajemenUser {
         
         if(lg.getUsername().equalsIgnoreCase(usr_adm) && lg.getPassword().equalsIgnoreCase(pass_adm)){
             status = "adm";
-        } 
+        } else if (lg.getUsername().equalsIgnoreCase(usr_ds) && lg.getPassword().equalsIgnoreCase(pass_ds)){
+            status = "dsn";
+        } else if (lg.getUsername().equalsIgnoreCase(usr_mhs) && lg.getPassword().equalsIgnoreCase(pass_mhs)){
+            status = "usr";
+        }
         
     }
 
