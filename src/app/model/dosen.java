@@ -5,43 +5,75 @@
  */
 package app.model;
 
+import app.controller.db;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ran
  */
 public class dosen {
-    private String nip;
-    private String nama;
-    private String jabatan;
-    private String password;
 
-    public String getNip() {
-        return nip;
-    }
+    Connection conn;
 
-    public String getNama() {
-        return nama;
-    }
+    public dosen()
 
-    public String getJabatan() {
-        return jabatan;
-    }
-
-    public void setNip(String nip) {
-        this.nip = nip;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-
-    public void setJabatan(String jabatan) {
-        this.jabatan = jabatan;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    {
+        conn = new db().connect();
+        
     }
     
+    public boolean insertDosen(String namaDosen, String jabatan, String nip){
+        String query = "INSERT INTO dosen(nip, nama_dosen, jabatan) VALUES( ?, ?, ?);";
+
+        boolean hasil = false;
+        try {
+            PreparedStatement st = conn.prepareStatement(query);
+            st.setString(1, nip);
+            st.setString(2, namaDosen);
+            st.setString(3, jabatan);
+//            st.setString(4, tglLahir);
+
+            int insert = st.executeUpdate();
+ 
+            if (insert > 0 ) {
+                hasil = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getMessage();
+        }
+        return hasil;
+    }
+    
+    public DefaultTableModel bacaTabelDosen(){
+        String query = "SELECT nip, nama_dosen, jabatan FROM dosen;";
+        String namaKolom[] = {"NIP", "Nama Dosen", "Jabatan"};
+        DefaultTableModel tabel = new DefaultTableModel(null, namaKolom);
+        try {
+            PreparedStatement st = conn.prepareStatement(query);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()){
+                Object data[] = new Object[3];
+                
+                data[0]=rs.getString(1);
+                data[1]=rs.getString(2);
+                data[2]=rs.getString(3);
+                
+                tabel.addRow(data);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getMessage();
+        }
+        
+        return tabel;
+    }
     
 }

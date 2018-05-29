@@ -3,7 +3,11 @@ package app.view;
 import app.controller.ManajemenDosen;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -41,10 +45,11 @@ public class home_admin extends javax.swing.JFrame {
         
         CardLayout cl = (CardLayout)(mainPanel.getLayout());
         cl.show(mainPanel,"menu");
-        
-    }
+     }
     
     
+    
+   
     public String getNip(){
         return nip.getText();
     }
@@ -57,7 +62,31 @@ public class home_admin extends javax.swing.JFrame {
         return jabatan.getText();
     }
     
+    public String getPassword(){
+        return password.getText();
+    }
     
+    public String getUsername(){
+        return txtUsername.getText();
+    }
+    
+    public JButton getSimpanDosen() {
+        return simpanDosen;
+    }
+    
+    public String getTanggallhr(){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String tanggal = dateFormat.format(tglLahir.getDate());
+        return tanggal;
+    }
+    
+    public void setTabel(DefaultTableModel t){
+        tabelDosen.setModel(t);
+    }
+    
+    public JButton getKembaliDosen(){
+        return kembaliTb_dosen;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,12 +104,13 @@ public class home_admin extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelDosen = new javax.swing.JTable();
         hapusDosen = new javax.swing.JButton();
         t_tambahDosen = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         tb_dosen = new javax.swing.JPanel();
+        jLabel37 = new javax.swing.JLabel();
         nip = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -88,11 +118,12 @@ public class home_admin extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jabatan = new javax.swing.JTextField();
+        txtUsername = new javax.swing.JTextField();
         password = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        kembaliTb_dosen = new javax.swing.JButton();
         simpanDosen = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        tglLahir = new com.toedter.calendar.JDateChooser();
         jLabel12 = new javax.swing.JLabel();
         jadwal = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -210,20 +241,20 @@ public class home_admin extends javax.swing.JFrame {
         jButton1.setText("Cari");
         dosen.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 170, 70, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelDosen.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "No", "NIP", "Nama", "Tanggal Lahir", "Jabatan", "Username", "Password"
+                "title1", "title2", "title3", "title4"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ){public boolean isCellEditable(int row, int column){return false;});
+        jScrollPane1.setViewportView(tabelDosen);
 
-        dosen.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 1220, 80));
+        dosen.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 1220, 90));
 
         hapusDosen.setText("Hapus");
         hapusDosen.addActionListener(new java.awt.event.ActionListener() {
@@ -256,6 +287,9 @@ public class home_admin extends javax.swing.JFrame {
 
         tb_dosen.setPreferredSize(new java.awt.Dimension(1366, 618));
         tb_dosen.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel37.setText("Username");
+        tb_dosen.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 430, -1, -1));
         tb_dosen.add(nip, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 320, 30));
 
         jLabel5.setText("NIP");
@@ -270,19 +304,26 @@ public class home_admin extends javax.swing.JFrame {
 
         jLabel8.setText("Jabatan");
         tb_dosen.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, -1, -1));
+
+        jabatan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jabatanActionPerformed(evt);
+            }
+        });
         tb_dosen.add(jabatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, 320, 30));
+        tb_dosen.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, 320, 30));
         tb_dosen.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 370, 320, 30));
 
         jLabel9.setText("Password");
         tb_dosen.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 380, -1, -1));
 
-        jButton2.setText("Kembali");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        kembaliTb_dosen.setText("Kembali");
+        kembaliTb_dosen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                kembaliTb_dosenActionPerformed(evt);
             }
         });
-        tb_dosen.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 430, -1, -1));
+        tb_dosen.add(kembaliTb_dosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 480, -1, -1));
 
         simpanDosen.setText("Simpan");
         simpanDosen.addActionListener(new java.awt.event.ActionListener() {
@@ -290,8 +331,8 @@ public class home_admin extends javax.swing.JFrame {
                 simpanDosenActionPerformed(evt);
             }
         });
-        tb_dosen.add(simpanDosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, -1, -1));
-        tb_dosen.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 320, 30));
+        tb_dosen.add(simpanDosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 480, -1, -1));
+        tb_dosen.add(tglLahir, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 270, 320, 30));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/tmbh dsn.png"))); // NOI18N
         tb_dosen.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 620));
@@ -759,10 +800,10 @@ public class home_admin extends javax.swing.JFrame {
         cl.show(mainPanel,"tb_dosen");
     }//GEN-LAST:event_t_tambahDosenActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        CardLayout cl = (CardLayout)(mainPanel.getLayout());
-        cl.show(mainPanel,"dosen");
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void kembaliTb_dosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliTb_dosenActionPerformed
+//        CardLayout cl = (CardLayout)(mainPanel.getLayout());
+//        cl.show(mainPanel,"dosen");
+    }//GEN-LAST:event_kembaliTb_dosenActionPerformed
 
     private void hapusDosen3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusDosen3ActionPerformed
 
@@ -865,6 +906,10 @@ public class home_admin extends javax.swing.JFrame {
     
     }//GEN-LAST:event_jButton16ActionPerformed
 
+    private void jabatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jabatanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jabatanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -915,7 +960,6 @@ public class home_admin extends javax.swing.JFrame {
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -929,7 +973,6 @@ public class home_admin extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JComboBox<String> jComboBox8;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -961,6 +1004,7 @@ public class home_admin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -975,7 +1019,6 @@ public class home_admin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
@@ -996,6 +1039,7 @@ public class home_admin extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jabatan;
     private javax.swing.JPanel jadwal;
+    private javax.swing.JButton kembaliTb_dosen;
     public javax.swing.JPanel mainPanel;
     private javax.swing.JPanel matakuliah;
     private javax.swing.JPanel menu;
@@ -1017,8 +1061,11 @@ public class home_admin extends javax.swing.JFrame {
     private javax.swing.JButton t_tambahMhs1;
     private javax.swing.JButton t_tambahMhs2;
     private javax.swing.JButton t_tambahMk;
+    private javax.swing.JTable tabelDosen;
     private javax.swing.JPanel tb_dosen;
     private javax.swing.JPanel tb_jadwal;
     private javax.swing.JPanel tb_matakuliah;
+    private com.toedter.calendar.JDateChooser tglLahir;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

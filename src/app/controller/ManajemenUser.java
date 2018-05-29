@@ -7,6 +7,9 @@ package app.controller;
 
 import app.model.md_login;
 import app.view.login;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -16,36 +19,50 @@ import app.view.login;
 
 
 public class ManajemenUser {
-    private login lg; 
-    private md_login usr;
-    String status="";
-    
-    public ManajemenUser(login lg){
-        this.lg = lg;
-    }
-    
-    public void cekLogin(){       
-        String usr_adm = "admin";
-        String pass_adm = "admin";
-        String usr_ds = "dosen";
-        String pass_ds = "dosen";
-        String usr_mhs = "mahasiswa";
-        String pass_mhs = "mahasiswa";
-        
-        if(lg.getUsername().equalsIgnoreCase(usr_adm) && lg.getPassword().equalsIgnoreCase(pass_adm)){
-            status = "adm";
-        } else if (lg.getUsername().equalsIgnoreCase(usr_ds) && lg.getPassword().equalsIgnoreCase(pass_ds)){
-            status = "dsn";
-        } else if (lg.getUsername().equalsIgnoreCase(usr_mhs) && lg.getPassword().equalsIgnoreCase(pass_mhs)){
-            status = "usr";
-        }
-        
-    }
+       private md_login lg;
+       private login login;
+     public ManajemenUser(){
+       
+     } 
+      
+     public ManajemenUser(login login, md_login lg){
+         this.login=login;
+         this.lg=lg;
+         this.login.setVisible(true);
+         
+         this.login.getLogin(new loginListener());
+     }
+     
+     public class loginListener implements ActionListener{
 
-    public String getStatus() {
-        return status;
-    }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String username = login.getUsername();
+                String password = login.getPassword();
+                String level = lg.login(username, password);
+                
+                if(level.equalsIgnoreCase("admin")){
+                    new app.controller.ManajemenAdmin();
+                    login.dispose();
+                            
+                } else if (level.equalsIgnoreCase("dosen")){
+                    new app.controller.ManajemenDosen();
+                    login.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(login, "Username atau Password Salah");
+                } 
+        }
+         
+     }
+                
+              
+                
+                
+            }
+        
     
     
     
-}
+    
+    
+

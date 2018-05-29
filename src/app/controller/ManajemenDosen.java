@@ -26,25 +26,29 @@ public class ManajemenDosen {
         
         
     }
+
+    ManajemenDosen() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
    public void simpanDosen(){
-       ds = new dosen();
-       ds.setNip(ha.getNip());
-       ds.setNama(ha.getNama());
-       ds.setJabatan(ha.getJabatan());
-       
-       if(ds.getNama().equals("")|ds.getNama().equals("")|ds.getJabatan().equals("")){
-           JOptionPane.showMessageDialog(ha, "Lengkapi data");
-       } else {
-           JOptionPane.showMessageDialog(ha, "Berhasil menambahkan data");
-           CardLayout cl = (CardLayout)(ha.mainPanel.getLayout());
-            cl.show(ha.mainPanel,"dosen");
-          
-   }
-    
-  
-    
-    
+//       ds = new dosen();
+//       ds.setNip(ha.getNip());
+//       ds.setNama(ha.getNama());
+//       ds.setJabatan(ha.getJabatan());
+//       
+//       if(ds.getNama().equals("")|ds.getNama().equals("")|ds.getJabatan().equals("")){
+//           JOptionPane.showMessageDialog(ha, "Lengkapi data");
+//       } else {
+//           JOptionPane.showMessageDialog(ha, "Berhasil menambahkan data");
+//           CardLayout cl = (CardLayout)(ha.mainPanel.getLayout());
+//            cl.show(ha.mainPanel,"dosen");
+//          
+//   }
+//    
+//  
+//    
+//    
 }
 }
 

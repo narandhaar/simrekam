@@ -6,6 +6,7 @@
 package app.view;
 
 import app.controller.ManajemenDosen;
+import app.controller.ManajemenUser;
 import app.controller.db;
 import app.model.md_login;
 
@@ -21,8 +22,7 @@ public class main {
 //            login lg = new login();
 //            lg.setVisible(true);
 
-        db db = new db();
-        db.connect();
+       new ManajemenUser (new login(), new md_login());
     }
     
 }

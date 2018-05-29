@@ -16,7 +16,7 @@ import java.sql.SQLException;
  */
 public class db {
 
-    private final String url = "jdbc:postgresql://localhost:5432/postgres";
+    private final String url = "jdbc:postgresql://localhost:5432/appresensi";
     private final String user = "postgres";
     private final String password = "12345";
   

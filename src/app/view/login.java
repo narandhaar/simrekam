@@ -7,6 +7,8 @@ package app.view;
 
 import app.controller.ManajemenUser;
 import app.model.md_login;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,7 +28,6 @@ public class login extends javax.swing.JFrame {
     
     public login() {
         initComponents();
-        usr = new ManajemenUser(this);
     }
     
     public String getUsername(){
@@ -37,6 +38,9 @@ public class login extends javax.swing.JFrame {
         return String.valueOf(txtpassword.getPassword());
     }
 
+    public void getLogin(ActionListener a){
+        b_login.addActionListener(a);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,7 +50,7 @@ public class login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        b_login = new javax.swing.JButton();
         txtusername = new javax.swing.JTextField();
         txtpassword = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
@@ -54,16 +58,11 @@ public class login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/login1.png"))); // NOI18N
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 560, 140, 50));
+        b_login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/login1.png"))); // NOI18N
+        b_login.setBorder(null);
+        b_login.setBorderPainted(false);
+        b_login.setContentAreaFilled(false);
+        getContentPane().add(b_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 560, 140, 50));
 
         txtusername.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         txtusername.setForeground(new java.awt.Color(95, 44, 130));
@@ -80,25 +79,6 @@ public class login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       usr.cekLogin();
-            if(usr.getStatus()=="adm"){
-                JOptionPane.showMessageDialog(rootPane, "Berhasil login sebagai admin");
-                adm.setVisible(true);
-                this.dispose();
-            } else if (usr.getStatus()=="dsn"){
-                JOptionPane.showMessageDialog(rootPane, "Berhasil login sebagai dosen");
-                dsn.setVisible(true);
-                this.dispose();
-            } else if (usr.getStatus()=="mhs"){
-                 JOptionPane.showMessageDialog(rootPane, "Berhasil login sebagai mahasiswa");
-                mhs.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Password/Username salah");
-            }
- 
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,7 +116,7 @@ public class login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton b_login;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPasswordField txtpassword;
     private javax.swing.JTextField txtusername;

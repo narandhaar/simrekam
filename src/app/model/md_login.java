@@ -5,11 +5,43 @@
  */
 package app.model;
 
+import app.controller.db;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author ran
  */
 public class md_login {
+    private Connection koneksi;
+
+    public md_login(){
+        koneksi = new db().connect();
+    }
+    
+    public String login(String username, String password){
+        String query = "SELECT level FROM public.user WHERE username=? AND password=?;";
+        String level= "kosong";
+        try {
+            PreparedStatement st = koneksi.prepareStatement(query);
+            st.setString(1, username);
+            st.setString(2, password);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()){
+                level = rs.getString("level");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getMessage();
+        }
+        return level;
+    }
+    
         String usr_adm = "admin";
         String pass_adm = "admin";
         String usr_ds = "dosen";
