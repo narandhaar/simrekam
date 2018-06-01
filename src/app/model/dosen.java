@@ -79,9 +79,10 @@ public class dosen {
 //
 //        return tabel;
 //    }
-
     public void updateData(String namaDosen, String jabatan, int nip, String tanggalLahir) throws SQLException {
-        String sql = "UPDATE dataDosen SET (nama_dosen, jabatan, tanggalLahir) = (?,?,?)  WHERE nip= ?;";
+        String sql = "UPDATE public.\"dataDosen\"\n"
+                + "	SET nama_dosen=?, jabatan=?, \"tanggalLahir\"=?::date\n"
+                + "	WHERE nip=?;";
         PreparedStatement st = conn.prepareStatement(sql);
 
         st.setString(1, namaDosen);
@@ -98,7 +99,7 @@ public class dosen {
         PreparedStatement st = conn.prepareStatement(sql);
         st.setInt(1, nip);
         st.executeUpdate();
-        
+
     }
 
     public DefaultTableModel tabelDosen() {
@@ -126,7 +127,5 @@ public class dosen {
         return model;
 
     }
-    
- 
 
 }

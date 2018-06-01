@@ -52,7 +52,31 @@ public class ManajemenAdmin extends ManajemenUser {
         ha.getKembaliDosen().addActionListener(new kembaliDosen());
         ha.dosenButton().addActionListener(new kembaliDosen());
         ha.hapusDosen().addActionListener(new hapusDosen());
+        ha.confirmUbahDosen().addActionListener(new ubahDataDosen());
         ha.setTabel(ha.tabelDosen(), ds.tabelDosen());
+    }
+
+    private class ubahDataDosen implements ActionListener {
+
+        public ubahDataDosen() {
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String namaDosen = ha.getNama();
+            String tglLahir = ha.getTanggallhr();
+            String jabatan = ha.getJabatan();
+            int nip = Integer.parseInt(ha.getNip());
+            
+            try{
+                ds.updateData(namaDosen, jabatan, nip, tanggalLahir);
+                ha.setTabel(ha.tabelDosen(), ds.tabelDosen());
+                ha.showCard("dosen");
+                
+            } catch (Exception ex){
+                System.out.println(ex.getMessage());
+            }
+        }
     }
 
     private class menuDosen implements ActionListener {
@@ -114,6 +138,9 @@ public class ManajemenAdmin extends ManajemenUser {
                     Logger.getLogger(ManajemenAdmin.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 ha.showCard("tb_dosen");
+                ha.confirmUbahDosen().setVisible(true);
+                ha.getSimpanDosen().setVisible(false);
+                ha.getSimpanDosen().invalidate();
             }
         }
     }

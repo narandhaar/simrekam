@@ -105,6 +105,10 @@ public class home_admin extends javax.swing.JFrame {
         return tabelDosen.getSelectedRow();
     }
     
+    public JButton confirmUbahDosen(){
+        return ubahDosen;
+    }
+    
 //    public int ambilID(int baris){
 //        return Integer.parseInt(tabelDosen.getValueAt(baris, 0).toString());
 //    }
@@ -191,9 +195,9 @@ public class home_admin extends javax.swing.JFrame {
         nip = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        namaDosen = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        namaDosen = new javax.swing.JTextField();
         jabatan = new javax.swing.JTextField();
         txtUsername = new javax.swing.JTextField();
         password = new javax.swing.JTextField();
@@ -201,6 +205,7 @@ public class home_admin extends javax.swing.JFrame {
         tglLahir = new com.toedter.calendar.JDateChooser();
         kembaliTb_dosen = new javax.swing.JButton();
         simpanDosen = new javax.swing.JButton();
+        ubahDosen = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jadwal = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -511,24 +516,37 @@ public class home_admin extends javax.swing.JFrame {
         mainPanel.add(dosen, "card3");
 
         tb_dosen.setPreferredSize(new java.awt.Dimension(1366, 618));
+        tb_dosen.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel37.setText("Username");
+        tb_dosen.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 430, -1, -1));
+        tb_dosen.add(nip, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 320, 30));
 
         jLabel5.setText("NIP");
+        tb_dosen.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
 
         jLabel6.setText("Nama");
+        tb_dosen.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, -1, -1));
 
         jLabel7.setText("Tanggal Lahir");
+        tb_dosen.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, -1, -1));
 
         jLabel8.setText("Jabatan");
+        tb_dosen.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, -1, -1));
+        tb_dosen.add(namaDosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 320, 30));
 
         jabatan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jabatanActionPerformed(evt);
             }
         });
+        tb_dosen.add(jabatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, 320, 30));
+        tb_dosen.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, 320, 30));
+        tb_dosen.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 370, 320, 30));
 
         jLabel9.setText("Password");
+        tb_dosen.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 380, -1, -1));
+        tb_dosen.add(tglLahir, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 261, 320, 36));
 
         kembaliTb_dosen.setText("Kembali");
         kembaliTb_dosen.addActionListener(new java.awt.event.ActionListener() {
@@ -536,6 +554,7 @@ public class home_admin extends javax.swing.JFrame {
                 kembaliTb_dosenActionPerformed(evt);
             }
         });
+        tb_dosen.add(kembaliTb_dosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 480, -1, -1));
 
         simpanDosen.setText("Simpan");
         simpanDosen.addActionListener(new java.awt.event.ActionListener() {
@@ -543,103 +562,18 @@ public class home_admin extends javax.swing.JFrame {
                 simpanDosenActionPerformed(evt);
             }
         });
+        tb_dosen.add(simpanDosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 480, 80, -1));
+
+        ubahDosen.setText("Ubah");
+        ubahDosen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ubahDosenActionPerformed(evt);
+            }
+        });
+        tb_dosen.add(ubahDosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 480, 80, -1));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/tmbh dsn.png"))); // NOI18N
-
-        javax.swing.GroupLayout tb_dosenLayout = new javax.swing.GroupLayout(tb_dosen);
-        tb_dosen.setLayout(tb_dosenLayout);
-        tb_dosenLayout.setHorizontalGroup(
-            tb_dosenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(330, 330, 330)
-                .addComponent(namaDosen, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(450, 450, 450)
-                .addComponent(kembaliTb_dosen))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(330, 330, 330)
-                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(jLabel9))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(570, 570, 570)
-                .addComponent(simpanDosen))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(330, 330, 330)
-                .addComponent(jabatan, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(jLabel5))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(330, 330, 330)
-                .addComponent(nip, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(jLabel8))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(330, 330, 330)
-                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(jLabel6))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(330, 330, 330)
-                .addComponent(tglLahir, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(jLabel7))
-            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 1370, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(jLabel37))
-        );
-        tb_dosenLayout.setVerticalGroup(
-            tb_dosenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(namaDosen, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(480, 480, 480)
-                .addComponent(kembaliTb_dosen))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(370, 370, 370)
-                .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(380, 380, 380)
-                .addComponent(jLabel9))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(480, 480, 480)
-                .addComponent(simpanDosen))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(320, 320, 320)
-                .addComponent(jabatan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(180, 180, 180)
-                .addComponent(jLabel5))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(nip, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(330, 330, 330)
-                .addComponent(jLabel8))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(420, 420, 420)
-                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(230, 230, 230)
-                .addComponent(jLabel6))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(270, 270, 270)
-                .addComponent(tglLahir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(280, 280, 280)
-                .addComponent(jLabel7))
-            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(tb_dosenLayout.createSequentialGroup()
-                .addGap(430, 430, 430)
-                .addComponent(jLabel37))
-        );
+        tb_dosen.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 620));
 
         mainPanel.add(tb_dosen, "card4");
 
@@ -1130,6 +1064,10 @@ public class home_admin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void ubahDosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahDosenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ubahDosenActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1289,5 +1227,6 @@ public class home_admin extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser tglLahir;
     private javax.swing.JTextField txtUsername;
     private javax.swing.JButton ubah;
+    private javax.swing.JButton ubahDosen;
     // End of variables declaration//GEN-END:variables
 }
