@@ -5,7 +5,9 @@
  */
 package app.controller;
 
+import app.model.dosen;
 import app.model.md_login;
+import app.view.home_admin;
 import app.view.login;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +23,7 @@ import javax.swing.JOptionPane;
 public class ManajemenUser {
        private md_login lg;
        private login login;
+       
      public ManajemenUser(){
        
      } 
@@ -28,6 +31,7 @@ public class ManajemenUser {
      public ManajemenUser(login login, md_login lg){
          this.login=login;
          this.lg=lg;
+         
          this.login.setVisible(true);
          
          this.login.getLogin(new loginListener());
@@ -42,11 +46,11 @@ public class ManajemenUser {
                 String level = lg.login(username, password);
                 
                 if(level.equalsIgnoreCase("admin")){
-                    new app.controller.ManajemenAdmin();
+                    new ManajemenAdmin(new home_admin(), new dosen());
                     login.dispose();
                             
                 } else if (level.equalsIgnoreCase("dosen")){
-                    new app.controller.ManajemenDosen();
+                    new ManajemenDosen();
                     login.dispose();
                 } else {
                     JOptionPane.showMessageDialog(login, "Username atau Password Salah");
