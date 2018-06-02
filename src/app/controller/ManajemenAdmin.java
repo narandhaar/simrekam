@@ -50,11 +50,37 @@ public class ManajemenAdmin extends ManajemenUser {
         ha.getUbahDosen().addActionListener(new ubahDosen());
         ha.tabelListener(new getTabel());
         ha.getKembaliDosen().addActionListener(new kembaliDosen());
-        ha.dosenButton().addActionListener(new kembaliDosen());
+        ha.dosenButton().addActionListener(new masukDosen());
         ha.hapusDosen().addActionListener(new hapusDosen());
         ha.confirmUbahDosen().addActionListener(new ubahDataDosen());
+        ha.kembaliMenu().addActionListener(new kembaliMenu());
         ha.setTabel(ha.tabelDosen(), ds.tabelDosen());
     }
+
+    private class masukDosen implements ActionListener {
+
+        public masukDosen() {
+            
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+//            ha.showCard("dosen");
+        }
+    }
+
+    private class kembaliMenu implements ActionListener {
+
+        public kembaliMenu() {
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ha.showCard("menu");
+        }
+        
+    }
+
 
     private class ubahDataDosen implements ActionListener {
 
@@ -183,12 +209,12 @@ public class ManajemenAdmin extends ManajemenUser {
     private class kembaliDosen implements ActionListener {
 
         public kembaliDosen() {
-
+         
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+             ha.showCard("dosen");
         }
     }
 

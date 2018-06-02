@@ -140,7 +140,7 @@ public class home_admin extends javax.swing.JFrame {
 //    }
     
     public JButton getKembaliDosen(){
-        return kembaliTb_dosen;
+        return kembaliDosen;
     }
     
     public void tabelListener(MouseListener m){
@@ -158,6 +158,11 @@ public class home_admin extends javax.swing.JFrame {
     public JButton t_dosen(){
         return t_dosen;
     }
+    
+    public JButton kembaliMenu(){
+        return kembaliMenu;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -178,18 +183,6 @@ public class home_admin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
-        dosen = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        hapusDosen = new javax.swing.JButton();
-        t_tambahDosen = new javax.swing.JButton();
-        ubah = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        bgTable = new javax.swing.JScrollPane();
-        tabelDosen = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
         tb_dosen = new javax.swing.JPanel();
         jLabel37 = new javax.swing.JLabel();
         nip = new javax.swing.JTextField();
@@ -203,7 +196,7 @@ public class home_admin extends javax.swing.JFrame {
         password = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         tglLahir = new com.toedter.calendar.JDateChooser();
-        kembaliTb_dosen = new javax.swing.JButton();
+        kembaliDosen = new javax.swing.JButton();
         simpanDosen = new javax.swing.JButton();
         ubahDosen = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
@@ -287,6 +280,18 @@ public class home_admin extends javax.swing.JFrame {
         jLabel36 = new javax.swing.JLabel();
         jButton17 = new javax.swing.JButton();
         simpanDosen1 = new javax.swing.JButton();
+        dosen = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        hapusDosen = new javax.swing.JButton();
+        t_tambahDosen = new javax.swing.JButton();
+        ubah = new javax.swing.JButton();
+        kembaliMenu = new javax.swing.JButton();
+        bgTable = new javax.swing.JScrollPane();
+        tabelDosen = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
         panelAtas = new javax.swing.JPanel();
         jButton16 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -295,7 +300,10 @@ public class home_admin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        mainPanel.setPreferredSize(new java.awt.Dimension(1355, 615));
         mainPanel.setLayout(new java.awt.CardLayout());
+
+        menu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         t_dosen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/dsn.png"))); // NOI18N
         t_dosen.setBorder(null);
@@ -306,6 +314,7 @@ public class home_admin extends javax.swing.JFrame {
                 t_dosenActionPerformed(evt);
             }
         });
+        menu.add(t_dosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 90, -1, -1));
 
         t_matakuliah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/matkul.png"))); // NOI18N
         t_matakuliah.setBorder(null);
@@ -316,6 +325,7 @@ public class home_admin extends javax.swing.JFrame {
                 t_matakuliahActionPerformed(evt);
             }
         });
+        menu.add(t_matakuliah, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 90, -1, -1));
 
         t_rekapDosen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/rekap dsn.png"))); // NOI18N
         t_rekapDosen.setBorder(null);
@@ -326,6 +336,7 @@ public class home_admin extends javax.swing.JFrame {
                 t_rekapDosenActionPerformed(evt);
             }
         });
+        menu.add(t_rekapDosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 310, -1, -1));
 
         t_rekapMahasiswa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/rekap mhs.png"))); // NOI18N
         t_rekapMahasiswa.setBorder(null);
@@ -336,6 +347,7 @@ public class home_admin extends javax.swing.JFrame {
                 t_rekapMahasiswaActionPerformed(evt);
             }
         });
+        menu.add(t_rekapMahasiswa, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 310, -1, -1));
 
         t_jadwal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/jdwl.png"))); // NOI18N
         t_jadwal.setBorder(null);
@@ -346,9 +358,11 @@ public class home_admin extends javax.swing.JFrame {
                 t_jadwalActionPerformed(evt);
             }
         });
+        menu.add(t_jadwal, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 90, 160, 160));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/panel.png"))); // NOI18N
         jLabel2.setPreferredSize(new java.awt.Dimension(1366, 618));
+        menu.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 1080, 620));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -357,163 +371,14 @@ public class home_admin extends javax.swing.JFrame {
         jLabel33.setForeground(new java.awt.Color(0, 51, 51));
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel33.setText("Admin");
-        jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 290, 40));
+        jPanel1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 287, -1));
 
         jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/prof.png"))); // NOI18N
-        jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 620));
+        jPanel1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
-        menu.setLayout(menuLayout);
-        menuLayout.setHorizontalGroup(
-            menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(menuLayout.createSequentialGroup()
-                        .addGap(720, 720, 720)
-                        .addComponent(t_jadwal, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(menuLayout.createSequentialGroup()
-                        .addGap(310, 310, 310)
-                        .addComponent(t_rekapDosen)
-                        .addGap(122, 122, 122)
-                        .addComponent(t_rekapMahasiswa))
-                    .addGroup(menuLayout.createSequentialGroup()
-                        .addGap(170, 170, 170)
-                        .addComponent(t_dosen))
-                    .addGroup(menuLayout.createSequentialGroup()
-                        .addGap(450, 450, 450)
-                        .addComponent(t_matakuliah))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1090, javax.swing.GroupLayout.PREFERRED_SIZE)))
-        );
-        menuLayout.setVerticalGroup(
-            menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGroup(menuLayout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(menuLayout.createSequentialGroup()
-                        .addComponent(t_jadwal, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addGroup(menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(t_rekapDosen)
-                            .addComponent(t_rekapMahasiswa)))
-                    .addComponent(t_dosen)
-                    .addComponent(t_matakuliah)))
-        );
+        menu.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         mainPanel.add(menu, "card3");
-
-        dosen.setMaximumSize(new java.awt.Dimension(1081, 618));
-        dosen.setMinimumSize(new java.awt.Dimension(1081, 618));
-        dosen.setPreferredSize(new java.awt.Dimension(1081, 618));
-
-        jTextField1.setText("Cari ...");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("Filter");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIP", "Item 2", "Item 3", "Item 4" }));
-
-        jButton1.setText("Cari");
-
-        hapusDosen.setText("Hapus");
-        hapusDosen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hapusDosenActionPerformed(evt);
-            }
-        });
-
-        t_tambahDosen.setText("Tambah");
-        t_tambahDosen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                t_tambahDosenActionPerformed(evt);
-            }
-        });
-
-        ubah.setText("Update");
-
-        jButton5.setText("Kembali");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        tabelDosen.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        bgTable.setViewportView(tabelDosen);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/dsn_1.png"))); // NOI18N
-
-        javax.swing.GroupLayout dosenLayout = new javax.swing.GroupLayout(dosen);
-        dosen.setLayout(dosenLayout);
-        dosenLayout.setHorizontalGroup(
-            dosenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dosenLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jButton5))
-            .addGroup(dosenLayout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel4)
-                .addGap(34, 34, 34)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(dosenLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(bgTable, javax.swing.GroupLayout.PREFERRED_SIZE, 1310, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(dosenLayout.createSequentialGroup()
-                .addGap(1190, 1190, 1190)
-                .addComponent(ubah)
-                .addGap(17, 17, 17)
-                .addComponent(t_tambahDosen))
-            .addGroup(dosenLayout.createSequentialGroup()
-                .addGap(1110, 1110, 1110)
-                .addComponent(hapusDosen))
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1370, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        dosenLayout.setVerticalGroup(
-            dosenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dosenLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jButton5)
-                .addGap(121, 121, 121)
-                .addGroup(dosenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(dosenLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel4))
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(bgTable, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addGroup(dosenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ubah)
-                    .addComponent(t_tambahDosen)))
-            .addGroup(dosenLayout.createSequentialGroup()
-                .addGap(350, 350, 350)
-                .addComponent(hapusDosen))
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        mainPanel.add(dosen, "card3");
 
         tb_dosen.setPreferredSize(new java.awt.Dimension(1366, 618));
         tb_dosen.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -546,15 +411,15 @@ public class home_admin extends javax.swing.JFrame {
 
         jLabel9.setText("Password");
         tb_dosen.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 380, -1, -1));
-        tb_dosen.add(tglLahir, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 261, 320, 36));
+        tb_dosen.add(tglLahir, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 267, 320, 30));
 
-        kembaliTb_dosen.setText("Kembali");
-        kembaliTb_dosen.addActionListener(new java.awt.event.ActionListener() {
+        kembaliDosen.setText("Kembali");
+        kembaliDosen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kembaliTb_dosenActionPerformed(evt);
+                kembaliDosenActionPerformed(evt);
             }
         });
-        tb_dosen.add(kembaliTb_dosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 480, -1, -1));
+        tb_dosen.add(kembaliDosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 480, 130, 40));
 
         simpanDosen.setText("Simpan");
         simpanDosen.addActionListener(new java.awt.event.ActionListener() {
@@ -562,7 +427,7 @@ public class home_admin extends javax.swing.JFrame {
                 simpanDosenActionPerformed(evt);
             }
         });
-        tb_dosen.add(simpanDosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 480, 80, -1));
+        tb_dosen.add(simpanDosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 480, 130, 40));
 
         ubahDosen.setText("Ubah");
         ubahDosen.addActionListener(new java.awt.event.ActionListener() {
@@ -919,9 +784,78 @@ public class home_admin extends javax.swing.JFrame {
 
         mainPanel.add(biodata, "card4");
 
-        getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, -1, -1));
+        dosen.setMaximumSize(new java.awt.Dimension(1081, 618));
+        dosen.setMinimumSize(new java.awt.Dimension(1081, 618));
+        dosen.setPreferredSize(new java.awt.Dimension(1355, 615));
+        dosen.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelAtas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jTextField1.setText("Cari ...");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        dosen.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 280, 30));
+
+        jLabel4.setText("Filter");
+        dosen.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, -1, 30));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIP", "Item 2", "Item 3", "Item 4" }));
+        dosen.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 90, 30));
+
+        jButton1.setText("Cari");
+        dosen.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 180, 70, 30));
+
+        hapusDosen.setText("Hapus");
+        hapusDosen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hapusDosenActionPerformed(evt);
+            }
+        });
+        dosen.add(hapusDosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(966, 360, 90, -1));
+
+        t_tambahDosen.setText("Tambah");
+        t_tambahDosen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                t_tambahDosenActionPerformed(evt);
+            }
+        });
+        dosen.add(t_tambahDosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(1188, 360, 100, -1));
+
+        ubah.setText("Update");
+        dosen.add(ubah, new org.netbeans.lib.awtextra.AbsoluteConstraints(1083, 360, 90, -1));
+
+        kembaliMenu.setText("Kembali");
+        kembaliMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kembaliMenuActionPerformed(evt);
+            }
+        });
+        dosen.add(kembaliMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        tabelDosen.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        bgTable.setViewportView(tabelDosen);
+
+        dosen.add(bgTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 1250, 110));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/dsn_1.png"))); // NOI18N
+        dosen.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1330, 620));
+
+        mainPanel.add(dosen, "card3");
+
+        getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 1355, 615));
+
+        panelAtas.setLayout(new java.awt.BorderLayout());
 
         jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/logout(3).png"))); // NOI18N
         jButton16.setBorderPainted(false);
@@ -931,12 +865,12 @@ public class home_admin extends javax.swing.JFrame {
                 jButton16ActionPerformed(evt);
             }
         });
-        panelAtas.add(jButton16, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 40, -1, -1));
+        panelAtas.add(jButton16, java.awt.BorderLayout.CENTER);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/panelAtas.png"))); // NOI18N
-        panelAtas.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        panelAtas.add(jLabel3, java.awt.BorderLayout.PAGE_START);
 
-        getContentPane().add(panelAtas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 150));
+        getContentPane().add(panelAtas, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1380, 150));
 
         jLabel38.setText("jLabel38");
         getContentPane().add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, 678));
@@ -953,19 +887,10 @@ public class home_admin extends javax.swing.JFrame {
         cl.show(mainPanel,"");
     }//GEN-LAST:event_t_dosenActionPerformed
 
-    private void hapusDosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusDosenActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_hapusDosenActionPerformed
-
-    private void t_tambahDosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_tambahDosenActionPerformed
-       
-    }//GEN-LAST:event_t_tambahDosenActionPerformed
-
-    private void kembaliTb_dosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliTb_dosenActionPerformed
+    private void kembaliDosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliDosenActionPerformed
 //        CardLayout cl = (CardLayout)(mainPanel.getLayout());
 //        cl.show(mainPanel,"dosen");
-    }//GEN-LAST:event_kembaliTb_dosenActionPerformed
+    }//GEN-LAST:event_kembaliDosenActionPerformed
 
     private void hapusDosen3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusDosen3ActionPerformed
 
@@ -986,10 +911,6 @@ public class home_admin extends javax.swing.JFrame {
     private void t_tambahMkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_tambahMkActionPerformed
    
     }//GEN-LAST:event_t_tambahMkActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-     
-    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
        
@@ -1060,13 +981,25 @@ public class home_admin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jabatanActionPerformed
 
+    private void ubahDosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahDosenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ubahDosenActionPerformed
+
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void ubahDosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahDosenActionPerformed
+    private void hapusDosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusDosenActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ubahDosenActionPerformed
+    }//GEN-LAST:event_hapusDosenActionPerformed
+
+    private void t_tambahDosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_tambahDosenActionPerformed
+
+    }//GEN-LAST:event_t_tambahDosenActionPerformed
+
+    private void kembaliMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliMenuActionPerformed
+
+    }//GEN-LAST:event_kembaliMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1121,7 +1054,6 @@ public class home_admin extends javax.swing.JFrame {
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
@@ -1198,7 +1130,8 @@ public class home_admin extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jabatan;
     private javax.swing.JPanel jadwal;
-    private javax.swing.JButton kembaliTb_dosen;
+    private javax.swing.JButton kembaliDosen;
+    private javax.swing.JButton kembaliMenu;
     public javax.swing.JPanel mainPanel;
     private javax.swing.JPanel matakuliah;
     private javax.swing.JPanel menu;
