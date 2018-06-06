@@ -5,16 +5,20 @@
  */
 package app.controller;
 
+import app.model.matakuliah;
 import app.view.home_admin;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -28,11 +32,9 @@ public class ManajemenAdmin extends ManajemenUser {
 
     private home_admin ha;
     private app.model.dosen ds;
-
-    private int selectedRow = 0;
-    private int tampil;
+    private int nip;
     private String nama_dosen;
-    private String jabatan;
+    private int jabatan;
     private String tanggalLahir;
 
     public ManajemenAdmin(home_admin home, app.model.dosen m_dosen) {
@@ -54,17 +56,80 @@ public class ManajemenAdmin extends ManajemenUser {
         ha.hapusDosen().addActionListener(new hapusDosen());
         ha.confirmUbahDosen().addActionListener(new ubahDataDosen());
         ha.kembaliMenu().addActionListener(new kembaliMenu());
-        ha.setTabel(ha.tabelDosen(), ds.tabelDosen());
+        ha.menuMatakuliah().addActionListener(new menuMatakuliah());
+        comboBox();
+        ha.jabatan_comboBox().addActionListener(new pilihJabatan());
+        setDosen();
+    }
+
+    public final void setDosen() {
+        DefaultTableModel model = new DefaultTableModel();
+        Object[] columnsName = new Object[4];
+
+        columnsName[0] = "NIP";
+        columnsName[1] = "Nama Dosen";
+        columnsName[2] = "Tanggal Lahir";
+        columnsName[3] = "Jabatan";
+
+        model.setColumnIdentifiers(columnsName);
+
+        Object[] rowData = new Object[4];
+
+        for (int i = 0; i < ds.getDosen().size(); i++) {
+            rowData[0] = ds.getDosen().get(i).getNip();
+            rowData[1] = ds.getDosen().get(i).getNama_dosen();
+            rowData[2] = ds.getDosen().get(i).getTanggalLahir();
+            rowData[3] = ds.getDosen().get(i).getNama_jabatan();
+
+            model.addRow(rowData);
+        }
+
+        ha.tabelDosen().setModel(model);
+    }
+
+    public final void comboBox() {
+
+        HashMap<String, Integer> map = ds.jabatanCombo();
+        for (String s : map.keySet()) {
+            ha.setJabatan(s);
+            System.out.println(s);
+
+        }
+    }
+
+    private class menuMatakuliah implements ActionListener {
+
+        public menuMatakuliah() {
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            new ManajemenMataKuliah(new home_admin(), new matakuliah());
+            ha.showCard("matakuliah");
+        }
+    }
+
+    private class pilihJabatan implements ActionListener {
+
+        public pilihJabatan() {
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            HashMap<String, Integer> map = ds.jabatanCombo();
+            jabatan = map.get(ha.jabatan_comboBox().getSelectedItem().toString());
+        }
     }
 
     private class masukDosen implements ActionListener {
 
         public masukDosen() {
-            
+
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
+//            ha.setTabel(ha.tabelDosen(), ds.tabelDosen());
 //            ha.showCard("dosen");
         }
     }
@@ -78,9 +143,8 @@ public class ManajemenAdmin extends ManajemenUser {
         public void actionPerformed(ActionEvent e) {
             ha.showCard("menu");
         }
-        
-    }
 
+    }
 
     private class ubahDataDosen implements ActionListener {
 
@@ -91,15 +155,19 @@ public class ManajemenAdmin extends ManajemenUser {
         public void actionPerformed(ActionEvent e) {
             String namaDosen = ha.getNama();
             String tglLahir = ha.getTanggallhr();
-            String jabatan = ha.getJabatan();
             int nip = Integer.parseInt(ha.getNip());
-            
-            try{
-                ds.updateData(namaDosen, jabatan, nip, tanggalLahir);
-                ha.setTabel(ha.tabelDosen(), ds.tabelDosen());
+            String password = ha.getPassword();
+
+            try {
+                ds.updateData(namaDosen, jabatan, nip, tglLahir);
+                ds.updatePassword(password, nip);
+
                 ha.showCard("dosen");
-                
-            } catch (Exception ex){
+                setDosen();
+                ha.tabelDosen().clearSelection();
+                ha.tabelDosen().setEnabled(true);
+
+            } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }
         }
@@ -112,8 +180,11 @@ public class ManajemenAdmin extends ManajemenUser {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            ha.setTabel(ha.tabelDosen(), ds.tabelDosen());
+//            ha.setTabel(ha.tabelDosen(), ds.tabelDosen());
+            ha.tabelDosen().clearSelection();
+            ha.tabelDosen().setEnabled(true);
             ha.showCard("dosen");
+
         }
     }
 
@@ -135,11 +206,22 @@ public class ManajemenAdmin extends ManajemenUser {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            try {
-                ds.hapusDosen(tampil);
-                ha.setTabel(ha.tabelDosen(), ds.tabelDosen());
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+            if (ha.getBaris() < 0) {
+                JOptionPane.showMessageDialog(ha, "Pilih data terlebih dahulu");
+            } else {
+                int pilih = JOptionPane.YES_NO_OPTION;
+                JOptionPane.showConfirmDialog(null, "Apakah Anda yakin untuk menghapus data ini?", "Hapus", pilih);
+                if (pilih == JOptionPane.YES_OPTION) {
+                    try {
+                        ds.hapusDosen(nip);
+                        setDosen();
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+//            ds.tabelDosen();
+                ha.tabelDosen().clearSelection();
+                ha.tabelDosen().setEnabled(true);
             }
         }
     }
@@ -151,12 +233,17 @@ public class ManajemenAdmin extends ManajemenUser {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            if (tampil == 0) {
+            if (ha.getBaris() < 0) {
                 JOptionPane.showMessageDialog(null, "Pilih data terlebih dahulu");
             } else {
-                ha.setNip().setText(Integer.toString(tampil));
+                DefaultTableModel model = (DefaultTableModel) ha.tabelDosen().getModel();
+                ha.setNip().setText(Integer.toString(nip));
+                ha.setNip().setEditable(false);
                 ha.setNama().setText(nama_dosen);
-                ha.jabatan().setText(jabatan);
+                int jabatan = ds.idJabatan(nip);
+                ha.jabatan_comboBox().setSelectedIndex(jabatan - 1);
+                String password = ds.getPassword(nip);
+                ha.setPassword().setText(password);
                 try {
                     Date date = new SimpleDateFormat("yyyy-MM-dd").parse(tanggalLahir);
                     ha.tanggalLahir().setDate(date);
@@ -168,6 +255,7 @@ public class ManajemenAdmin extends ManajemenUser {
                 ha.getSimpanDosen().setVisible(false);
                 ha.getSimpanDosen().invalidate();
             }
+
         }
     }
 
@@ -178,14 +266,17 @@ public class ManajemenAdmin extends ManajemenUser {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            DefaultTableModel model = (DefaultTableModel) ha.tabelDosen().getModel();
-            selectedRow = ha.getBaris();
-            tampil = Integer.parseInt(model.getValueAt(selectedRow, 0).toString());
-            nama_dosen = model.getValueAt(selectedRow, 1).toString();
-            jabatan = model.getValueAt(selectedRow, 2).toString();
-            tanggalLahir = model.getValueAt(selectedRow, 3).toString();
 
-            System.out.println(tampil);
+            DefaultTableModel model = (DefaultTableModel) ha.tabelDosen().getModel();
+            ha.tabelDosen().setEnabled(false);
+            nip = Integer.parseInt(model.getValueAt(ha.getBaris(), 0).toString());
+            nama_dosen = model.getValueAt(ha.getBaris(), 1).toString();
+            String getjabatan = model.getValueAt(ha.getBaris(), 3).toString();
+            tanggalLahir = model.getValueAt(ha.getBaris(), 2).toString();
+
+            System.out.println(nip);
+
+            ha.tabelDosen().setEnabled(false);
         }
 
         @Override
@@ -209,12 +300,19 @@ public class ManajemenAdmin extends ManajemenUser {
     private class kembaliDosen implements ActionListener {
 
         public kembaliDosen() {
-         
+
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-             ha.showCard("dosen");
+
+            ha.showCard("dosen");
+
+            DefaultTableModel model = (DefaultTableModel) ha.tabelDosen().getModel();
+            ha.tabelDosen().clearSelection();
+            ha.tabelDosen().setEnabled(true);
+            ha.setNip().setEditable(true);
+            clearTb();
         }
     }
 
@@ -225,31 +323,40 @@ public class ManajemenAdmin extends ManajemenUser {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+
             String namaDosen = ha.getNama();
 //           String password = ha.getPassword();
             String tglLahir = ha.getTanggallhr();
-            String jabatan = ha.getJabatan();
             int nip = Integer.parseInt(ha.getNip());
-//           String username = ha.getUsername();
+            String password = ha.getPassword();
 //           
-            System.out.println(namaDosen + jabatan + nip + tglLahir);
+            ds.insertDosen(namaDosen, jabatan + 1, nip, tglLahir, password);
+//            ha.setTabel(ha.tabelDosen(), ds.tabelDosen());
+            setDosen();
+            ha.showCard("dosen");
 
-            if (ds.insertDosen(namaDosen, jabatan, nip, tglLahir)) {
-                JOptionPane.showMessageDialog(ha, "Pendaftaran Berhasil");
-                ha.setTabel(ha.tabelDosen(), ds.tabelDosen());
-                ha.showCard("dosen");
-
+//            System.out.println(namaDosen + jabatan + nip + tglLahir);
+            if (namaDosen.trim().isEmpty() || tglLahir.trim().isEmpty() || ha.getNip().trim().isEmpty() || tanggalLahir.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Lengkapi data terlebih dahulu");
             } else {
-                JOptionPane.showMessageDialog(ha, "Pendaftaran Gagal");
-            }
+                if (ds.insertDosen(namaDosen, jabatan, nip, tglLahir, password)) {
+                    JOptionPane.showMessageDialog(ha, "Pendaftaran Berhasil");
+                    setDosen();
+                    ha.showCard("dosen");
 
+                } else {
+                    JOptionPane.showMessageDialog(ha, "Pendaftaran Gagal");
+                }
+
+            }
         }
     }
 
-    private int ambilNIP() {
-        return tampil;
+    public final void clearTb() {
+        ha.setNip().setText("");
+        ha.setNama().setText("");
+        ha.tanggalLahir().setDate(null);
+        ha.setPassword().setText("");
     }
-
-   
 
 }

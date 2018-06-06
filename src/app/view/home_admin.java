@@ -1,15 +1,18 @@
 package app.view;
 
-import app.controller.ManajemenDosen;
 import com.toedter.calendar.JDateChooser;
 import java.awt.CardLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -21,7 +24,6 @@ import javax.swing.table.DefaultTableModel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author ran
@@ -31,137 +33,160 @@ public class home_admin extends javax.swing.JFrame {
     /**
      * Creates new form home_admin
      */
-    private ManajemenDosen ctrl_adm;
-    
     public home_admin() {
         initComponents();
-        ctrl_adm = new ManajemenDosen(this);
+
+        CardLayout cl = (CardLayout) (mainPanel.getLayout());
+
+        mainPanel.add("menu", menu);
+        mainPanel.add("dosen", dosen);
+        mainPanel.add("tb_dosen", tb_dosen);
+        mainPanel.add("matakuliah", matakuliah);
+        mainPanel.add("tb_matakuliah", tb_matakuliah);
+        mainPanel.add("jadwal", jadwal);
+        mainPanel.add("tb_jadwal", tb_jadwal);
+        mainPanel.add("dosen", dosen);
+        mainPanel.add("rk_dosen", rekapanDosen);
+        mainPanel.add("rk_mahasiswa", rekapanMahasiswa);
+//
+//        comboBox();
         
-        CardLayout cl = (CardLayout)(mainPanel.getLayout());
-       
-        mainPanel.add("menu",menu);
-        mainPanel.add("dosen",dosen);
-        mainPanel.add("tb_dosen",tb_dosen);
-        mainPanel.add("matakuliah",matakuliah);
-        mainPanel.add("tb_matakuliah",tb_matakuliah);
-        mainPanel.add("jadwal",jadwal);
-        mainPanel.add("tb_jadwal",tb_jadwal);
-        mainPanel.add("dosen",dosen);
-        mainPanel.add("rk_dosen",rekapanDosen);
-        mainPanel.add("rk_mahasiswa",rekapanMahasiswa);
-               
-        
-     }
-    
-    public void showCard(String key){
-        CardLayout cl = (CardLayout)(mainPanel.getLayout());
-        cl.show(mainPanel,key);
     }
 
-    public JTextField setNip(){
-        return nip;
-    } 
+    public void showCard(String key) {
+        CardLayout cl = (CardLayout) (mainPanel.getLayout());
+        cl.show(mainPanel, key);
+    }
+//
+//    public void comboBox() {
+//
+//        HashMap<String, Integer> map = ds.jabatanCombo();
+//        for (String s : map.keySet()) {
+//            jabatan_comboBox.addItem(s);
+//            System.out.println(s);
+//
+//        }
+//    }
+
+    public JButton menuMatakuliah(){
+        return t_matakuliah;
+    }
     
-    public JTextField setNama(){
+    public void setJabatan(String jabatan) {
+        jabatan_comboBox().addItem(jabatan);
+    }
+
+    public JComboBox jabatan_comboBox() {
+        return jabatan_comboBox;
+    }
+
+    public JTextField setNip() {
+        return nip;
+    }
+    
+
+    public JTextField setNama() {
         return namaDosen;
     }
-    
-    public JTextField jabatan(){
-        return jabatan;
-    }
-    
-    public JDateChooser tanggalLahir(){
+
+
+    public JDateChooser tanggalLahir() {
         return tglLahir;
     }
-    
-    public String getNip(){
+
+    public String getNip() {
         return nip.getText();
     }
-    
-    public String getNama(){
+
+    public String getNama() {
         return namaDosen.getText();
     }
-    
-    public String getJabatan(){
-        return jabatan.getText();
-    }
-    
-    public String getPassword(){
+
+
+    public String getPassword() {
         return password.getText();
     }
     
-    public String getUsername(){
-        return txtUsername.getText();
+    public JTextField setPassword(){
+        return password;
     }
-    
+
     public JButton getSimpanDosen() {
         return simpanDosen;
     }
+
     public JButton getUbahDosen() {
         return ubah;
     }
-    
-    public int getBaris(){
+
+    public int getBaris() {
         return tabelDosen.getSelectedRow();
     }
-    
-    public JButton confirmUbahDosen(){
+
+    public JButton confirmUbahDosen() {
         return ubahDosen;
     }
-    
+
 //    public int ambilID(int baris){
 //        return Integer.parseInt(tabelDosen.getValueAt(baris, 0).toString());
 //    }
 //    
-        public void setTabel(JTable t, DefaultTableModel tabel) {
+    public void setTabel(JTable t, DefaultTableModel tabel) {
         t.setModel(tabel);
     }
-        
-    
-    
-    public JButton dosenButton(){
+
+    public JButton dosenButton() {
         return t_dosen;
     }
-    
-    public JButton t_tambahDosen(){
+
+    public JButton t_tambahDosen() {
         return t_tambahDosen;
     }
-    
-    public String getTanggallhr(){
-     
-   SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-    String tanggal = dateFormat.format(tglLahir.getDate());
-    return tanggal;
+
+    public String getTanggallhr() {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String tanggal = dateFormat.format(tglLahir.getDate());
+        return tanggal;
 
     }
-    
+
 //    public void setTabel(DefaultTableModel t){
 //        tabelDosen.setModel(t);
 //    }
-    
-    public JButton getKembaliDosen(){
+    public JButton getKembaliDosen() {
         return kembaliDosen;
     }
+
+    public void tabelListener(MouseListener m) {
+        tabelDosen.addMouseListener(m);
+    }
     
-    public void tabelListener(MouseListener m){
-       tabelDosen.addMouseListener(m);
+    public void isiUsername(KeyListener k){
+        nip.addKeyListener(k);
     }
 
-    public JButton hapusDosen(){
+    public JButton hapusDosen() {
         return hapusDosen;
     }
-    
-    public JTable tabelDosen(){
+
+    public JTable tabelDosen() {
         return tabelDosen;
     }
+
     
-    public JButton t_dosen(){
+    
+    public JButton t_dosen() {
         return t_dosen;
     }
-    
-    public JButton kembaliMenu(){
+
+    public JButton kembaliMenu() {
         return kembaliMenu;
     }
+
+   //TAMBAH MATAKULIAH
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -184,21 +209,19 @@ public class home_admin extends javax.swing.JFrame {
         jLabel33 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         tb_dosen = new javax.swing.JPanel();
-        jLabel37 = new javax.swing.JLabel();
         nip = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         namaDosen = new javax.swing.JTextField();
-        jabatan = new javax.swing.JTextField();
-        txtUsername = new javax.swing.JTextField();
         password = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         tglLahir = new com.toedter.calendar.JDateChooser();
         kembaliDosen = new javax.swing.JButton();
         simpanDosen = new javax.swing.JButton();
         ubahDosen = new javax.swing.JButton();
+        jabatan_comboBox = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
         jadwal = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -240,17 +263,17 @@ public class home_admin extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         tb_matakuliah = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
-        jTextField21 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txt_kode_matakuliah = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        jComboBox8 = new javax.swing.JComboBox<>();
+        jenis_matakuliah1 = new javax.swing.JComboBox<>();
+        semester = new javax.swing.JComboBox<>();
+        jenis_matakuliah = new javax.swing.JComboBox<>();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
+        txt_nama_matakuliah = new javax.swing.JTextField();
+        batal_tbMk = new javax.swing.JButton();
+        simpan_tbMk = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         rekapanDosen = new javax.swing.JPanel();
         jTextField2 = new javax.swing.JTextField();
@@ -320,11 +343,6 @@ public class home_admin extends javax.swing.JFrame {
         t_matakuliah.setBorder(null);
         t_matakuliah.setBorderPainted(false);
         t_matakuliah.setContentAreaFilled(false);
-        t_matakuliah.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                t_matakuliahActionPerformed(evt);
-            }
-        });
         menu.add(t_matakuliah, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 90, -1, -1));
 
         t_rekapDosen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/rekap dsn.png"))); // NOI18N
@@ -353,11 +371,6 @@ public class home_admin extends javax.swing.JFrame {
         t_jadwal.setBorder(null);
         t_jadwal.setBorderPainted(false);
         t_jadwal.setContentAreaFilled(false);
-        t_jadwal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                t_jadwalActionPerformed(evt);
-            }
-        });
         menu.add(t_jadwal, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 90, 160, 160));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/panel.png"))); // NOI18N
@@ -382,9 +395,6 @@ public class home_admin extends javax.swing.JFrame {
 
         tb_dosen.setPreferredSize(new java.awt.Dimension(1366, 618));
         tb_dosen.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel37.setText("Username");
-        tb_dosen.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 430, -1, -1));
         tb_dosen.add(nip, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 320, 30));
 
         jLabel5.setText("NIP");
@@ -399,14 +409,6 @@ public class home_admin extends javax.swing.JFrame {
         jLabel8.setText("Jabatan");
         tb_dosen.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, -1, -1));
         tb_dosen.add(namaDosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 320, 30));
-
-        jabatan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jabatanActionPerformed(evt);
-            }
-        });
-        tb_dosen.add(jabatan, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, 320, 30));
-        tb_dosen.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 420, 320, 30));
         tb_dosen.add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 370, 320, 30));
 
         jLabel9.setText("Password");
@@ -436,6 +438,8 @@ public class home_admin extends javax.swing.JFrame {
             }
         });
         tb_dosen.add(ubahDosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 480, 80, -1));
+
+        tb_dosen.add(jabatan_comboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, 320, -1));
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/tmbh dsn.png"))); // NOI18N
         tb_dosen.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 620));
@@ -592,19 +596,9 @@ public class home_admin extends javax.swing.JFrame {
         matakuliah.add(hapusDosen2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 310, -1, -1));
 
         t_tambahMk.setText("Tambah");
-        t_tambahMk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                t_tambahMkActionPerformed(evt);
-            }
-        });
         matakuliah.add(t_tambahMk, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 310, -1, -1));
 
         jButton12.setText("Kembali");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
         matakuliah.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/matkul_1.png"))); // NOI18N
@@ -617,8 +611,7 @@ public class home_admin extends javax.swing.JFrame {
 
         jLabel25.setText("Kode Matakuliah        :");
         tb_matakuliah.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, -1, -1));
-        tb_matakuliah.add(jTextField21, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 290, 34));
-        tb_matakuliah.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 400, 290, 34));
+        tb_matakuliah.add(txt_kode_matakuliah, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 290, 34));
 
         jLabel26.setText("Nama Matakuliah       :");
         tb_matakuliah.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, -1, -1));
@@ -626,32 +619,27 @@ public class home_admin extends javax.swing.JFrame {
         jLabel28.setText("Semester                   :");
         tb_matakuliah.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, -1, -1));
 
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fakultas", "Item 2", "Item 3", "Item 4" }));
-        tb_matakuliah.add(jComboBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 290, 40));
+        jenis_matakuliah1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Jumlah SKS", "1", "2", "3" }));
+        tb_matakuliah.add(jenis_matakuliah1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 290, 40));
+
+        semester.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Semester", "1", "2", "3", "4", "5", "6", "7", "8", " " }));
+        tb_matakuliah.add(semester, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 400, 290, 40));
+
+        jenis_matakuliah.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Jenis Matakuliah", "Universitas", "Fakultas", "Program Studi" }));
+        tb_matakuliah.add(jenis_matakuliah, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 290, 40));
 
         jLabel30.setText("Jenis Matakuliah        :");
         tb_matakuliah.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, -1, -1));
 
         jLabel31.setText("Jumlah SKS                 :");
         tb_matakuliah.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, -1, -1));
-        tb_matakuliah.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, 290, 34));
-        tb_matakuliah.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 290, 34));
+        tb_matakuliah.add(txt_nama_matakuliah, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, 290, 34));
 
-        jButton13.setText("Batal");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
-            }
-        });
-        tb_matakuliah.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 470, -1, -1));
+        batal_tbMk.setText("Batal");
+        tb_matakuliah.add(batal_tbMk, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 470, 100, 40));
 
-        jButton14.setText("Simpan");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
-            }
-        });
-        tb_matakuliah.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, -1, -1));
+        simpan_tbMk.setText("Simpan");
+        tb_matakuliah.add(simpan_tbMk, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 100, 40));
         tb_matakuliah.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 620));
 
         mainPanel.add(tb_matakuliah, "card3");
@@ -855,7 +843,7 @@ public class home_admin extends javax.swing.JFrame {
 
         getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 1355, 615));
 
-        panelAtas.setLayout(new java.awt.BorderLayout());
+        panelAtas.setLayout(null);
 
         jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/logout(3).png"))); // NOI18N
         jButton16.setBorderPainted(false);
@@ -865,10 +853,12 @@ public class home_admin extends javax.swing.JFrame {
                 jButton16ActionPerformed(evt);
             }
         });
-        panelAtas.add(jButton16, java.awt.BorderLayout.CENTER);
+        panelAtas.add(jButton16);
+        jButton16.setBounds(1150, 0, 170, 150);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/panelAtas.png"))); // NOI18N
-        panelAtas.add(jLabel3, java.awt.BorderLayout.PAGE_START);
+        panelAtas.add(jLabel3);
+        jLabel3.setBounds(10, 0, 1330, 149);
 
         getContentPane().add(panelAtas, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1380, 150));
 
@@ -878,13 +868,9 @@ public class home_admin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void t_matakuliahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_matakuliahActionPerformed
-
-    }//GEN-LAST:event_t_matakuliahActionPerformed
-
     private void t_dosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_dosenActionPerformed
-        CardLayout cl = (CardLayout)(mainPanel.getLayout());
-        cl.show(mainPanel,"");
+        CardLayout cl = (CardLayout) (mainPanel.getLayout());
+        cl.show(mainPanel, "");
     }//GEN-LAST:event_t_dosenActionPerformed
 
     private void kembaliDosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kembaliDosenActionPerformed
@@ -908,57 +894,37 @@ public class home_admin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_hapusDosen2ActionPerformed
 
-    private void t_tambahMkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_tambahMkActionPerformed
-   
-    }//GEN-LAST:event_t_tambahMkActionPerformed
-
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-       
+
     }//GEN-LAST:event_jButton11ActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        
-    }//GEN-LAST:event_jButton12ActionPerformed
-
     private void simpanDosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_simpanDosenActionPerformed
-        
+
     }//GEN-LAST:event_simpanDosenActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton9ActionPerformed
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        
-    }//GEN-LAST:event_jButton13ActionPerformed
-
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton14ActionPerformed
-
     private void t_rekapDosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_rekapDosenActionPerformed
-       
+
     }//GEN-LAST:event_t_rekapDosenActionPerformed
 
     private void t_rekapMahasiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_rekapMahasiswaActionPerformed
-        
+
     }//GEN-LAST:event_t_rekapMahasiswaActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-      
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        
-    }//GEN-LAST:event_jButton15ActionPerformed
 
-    private void t_jadwalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_jadwalActionPerformed
-       
-    }//GEN-LAST:event_t_jadwalActionPerformed
+    }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         // TODO add your handling code here:
@@ -970,16 +936,12 @@ public class home_admin extends javax.swing.JFrame {
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         int close = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin keluar?", "Pesan keluar", JOptionPane.YES_NO_OPTION);
-        
-        if(close == JOptionPane.YES_OPTION){
-            System.exit(0);
-        } 
-    
-    }//GEN-LAST:event_jButton16ActionPerformed
 
-    private void jabatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jabatanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jabatanActionPerformed
+        if (close == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+
+    }//GEN-LAST:event_jButton16ActionPerformed
 
     private void ubahDosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubahDosenActionPerformed
         // TODO add your handling code here:
@@ -1037,6 +999,7 @@ public class home_admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton batal_tbMk;
     private javax.swing.JScrollPane bgTable;
     private javax.swing.JPanel biodata;
     public javax.swing.JPanel dosen;
@@ -1047,8 +1010,6 @@ public class home_admin extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
@@ -1063,7 +1024,6 @@ public class home_admin extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox7;
-    private javax.swing.JComboBox<String> jComboBox8;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1095,7 +1055,6 @@ public class home_admin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1122,14 +1081,12 @@ public class home_admin extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField21;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jabatan;
+    private javax.swing.JComboBox<String> jabatan_comboBox;
     private javax.swing.JPanel jadwal;
+    private javax.swing.JComboBox<String> jenis_matakuliah;
+    private javax.swing.JComboBox<String> jenis_matakuliah1;
     private javax.swing.JButton kembaliDosen;
     private javax.swing.JButton kembaliMenu;
     public javax.swing.JPanel mainPanel;
@@ -1142,8 +1099,10 @@ public class home_admin extends javax.swing.JFrame {
     private javax.swing.JTextField password;
     public javax.swing.JPanel rekapanDosen;
     public javax.swing.JPanel rekapanMahasiswa;
+    private javax.swing.JComboBox<String> semester;
     private javax.swing.JButton simpanDosen;
     private javax.swing.JButton simpanDosen1;
+    private javax.swing.JButton simpan_tbMk;
     private javax.swing.JButton t_dosen;
     private javax.swing.JButton t_jadwal;
     private javax.swing.JButton t_matakuliah;
@@ -1158,7 +1117,8 @@ public class home_admin extends javax.swing.JFrame {
     private javax.swing.JPanel tb_jadwal;
     private javax.swing.JPanel tb_matakuliah;
     private com.toedter.calendar.JDateChooser tglLahir;
-    private javax.swing.JTextField txtUsername;
+    private javax.swing.JTextField txt_kode_matakuliah;
+    private javax.swing.JTextField txt_nama_matakuliah;
     private javax.swing.JButton ubah;
     private javax.swing.JButton ubahDosen;
     // End of variables declaration//GEN-END:variables

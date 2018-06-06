@@ -24,12 +24,12 @@ public class md_login {
         koneksi = new db().connect();
     }
     
-    public String login(String username, String password){
+    public String login(int username, String password){
         String query = "SELECT level FROM public.user WHERE username=? AND password=?;";
         String level= "kosong";
         try {
             PreparedStatement st = koneksi.prepareStatement(query);
-            st.setString(1, username);
+            st.setInt(1, username);
             st.setString(2, password);
             ResultSet rs = st.executeQuery();
             while (rs.next()){

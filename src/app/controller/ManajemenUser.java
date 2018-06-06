@@ -41,7 +41,7 @@ public class ManajemenUser {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            String username = login.getUsername();
+            int username = Integer.parseInt(login.getUsername());
                 String password = login.getPassword();
                 String level = lg.login(username, password);
                 
