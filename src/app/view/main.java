@@ -20,6 +20,9 @@ public class main {
 //        adm.setVisible(true);
 
 //            login lg = new login();
+
+
+
 //            lg.setVisible(true);
 
        new ManajemenUser (new login(), new md_login());

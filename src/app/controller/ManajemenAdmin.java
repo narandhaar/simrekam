@@ -43,8 +43,6 @@ public class ManajemenAdmin extends ManajemenUser {
         ha.setVisible(true);
         ha.showCard("menu");
 
-        ds = new app.model.dosen();
-
         ha.t_dosen().addActionListener(new menuDosen());
 
         ha.t_tambahDosen().addActionListener(new menuTambah());
@@ -105,7 +103,7 @@ public class ManajemenAdmin extends ManajemenUser {
         @Override
         public void actionPerformed(ActionEvent e) {
             new ManajemenMataKuliah(new home_admin(), new matakuliah());
-            ha.showCard("matakuliah");
+            ha.setVisible(false);
         }
     }
 

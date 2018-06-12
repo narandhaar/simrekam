@@ -50,7 +50,7 @@ public class home_admin extends javax.swing.JFrame {
         mainPanel.add("rk_mahasiswa", rekapanMahasiswa);
 //
 //        comboBox();
-        
+
     }
 
     public void showCard(String key) {
@@ -68,10 +68,6 @@ public class home_admin extends javax.swing.JFrame {
 //        }
 //    }
 
-    public JButton menuMatakuliah(){
-        return t_matakuliah;
-    }
-    
     public void setJabatan(String jabatan) {
         jabatan_comboBox().addItem(jabatan);
     }
@@ -83,12 +79,10 @@ public class home_admin extends javax.swing.JFrame {
     public JTextField setNip() {
         return nip;
     }
-    
 
     public JTextField setNama() {
         return namaDosen;
     }
-
 
     public JDateChooser tanggalLahir() {
         return tglLahir;
@@ -102,12 +96,11 @@ public class home_admin extends javax.swing.JFrame {
         return namaDosen.getText();
     }
 
-
     public String getPassword() {
         return password.getText();
     }
-    
-    public JTextField setPassword(){
+
+    public JTextField setPassword() {
         return password;
     }
 
@@ -161,8 +154,8 @@ public class home_admin extends javax.swing.JFrame {
     public void tabelListener(MouseListener m) {
         tabelDosen.addMouseListener(m);
     }
-    
-    public void isiUsername(KeyListener k){
+
+    public void isiUsername(KeyListener k) {
         nip.addKeyListener(k);
     }
 
@@ -174,8 +167,6 @@ public class home_admin extends javax.swing.JFrame {
         return tabelDosen;
     }
 
-    
-    
     public JButton t_dosen() {
         return t_dosen;
     }
@@ -184,10 +175,42 @@ public class home_admin extends javax.swing.JFrame {
         return kembaliMenu;
     }
 
-   //TAMBAH MATAKULIAH
-    
-    
-    
+    //TAMBAH MATAKULIAH
+    public JButton menuMatakuliah() {
+        return t_matakuliah;
+    }
+
+    public JTable tabelMatakuliah() {
+        return tabelMatakuliah;
+    }
+
+    public JButton simpanMk() {
+        return simpan_tbMk;
+    }
+
+    public String getKodeMk() {
+        return txt_kode_matakuliah.getText();
+    }
+
+    public String getNamaMk() {
+        return txt_nama_matakuliah.getText();
+    }
+
+    public JComboBox getJenisMk() {
+        return jenis_matakuliah;
+    }
+
+    public JComboBox getSemester() {
+        return semester;
+    }
+
+    public JComboBox getJumlahsks() {
+        return jumlah_sks;
+    }
+
+    public JButton masukTambakMk(){
+        return t_tambahMk;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -253,7 +276,7 @@ public class home_admin extends javax.swing.JFrame {
         matakuliah = new javax.swing.JPanel();
         jTextField13 = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tabelMatakuliah = new javax.swing.JTable();
         jLabel20 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
         jButton10 = new javax.swing.JButton();
@@ -266,7 +289,7 @@ public class home_admin extends javax.swing.JFrame {
         txt_kode_matakuliah = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        jenis_matakuliah1 = new javax.swing.JComboBox<>();
+        jumlah_sks = new javax.swing.JComboBox<>();
         semester = new javax.swing.JComboBox<>();
         jenis_matakuliah = new javax.swing.JComboBox<>();
         jLabel30 = new javax.swing.JLabel();
@@ -563,20 +586,20 @@ public class home_admin extends javax.swing.JFrame {
         jTextField13.setText("Cari ...");
         matakuliah.add(jTextField13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 280, 30));
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tabelMatakuliah.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "No", "Kode Matakuliah", "Nama Matakuliah", "Jenis Matakuliah", "Jumlah SKS", "Semester"
+                "Kode Matakuliah", "Nama Matakuliah", "Jenis Matakuliah", "Jumlah SKS", "Semester"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(tabelMatakuliah);
 
-        matakuliah.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 1280, 80));
+        matakuliah.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 1220, 190));
 
         jLabel20.setText("Filter");
         matakuliah.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, -1, -1));
@@ -593,10 +616,10 @@ public class home_admin extends javax.swing.JFrame {
                 hapusDosen2ActionPerformed(evt);
             }
         });
-        matakuliah.add(hapusDosen2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 310, -1, -1));
+        matakuliah.add(hapusDosen2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 450, -1, -1));
 
         t_tambahMk.setText("Tambah");
-        matakuliah.add(t_tambahMk, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 310, -1, -1));
+        matakuliah.add(t_tambahMk, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 450, -1, -1));
 
         jButton12.setText("Kembali");
         matakuliah.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
@@ -619,8 +642,8 @@ public class home_admin extends javax.swing.JFrame {
         jLabel28.setText("Semester                   :");
         tb_matakuliah.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, -1, -1));
 
-        jenis_matakuliah1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Jumlah SKS", "1", "2", "3" }));
-        tb_matakuliah.add(jenis_matakuliah1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 290, 40));
+        jumlah_sks.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Jumlah SKS", "1", "2", "3" }));
+        tb_matakuliah.add(jumlah_sks, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 290, 40));
 
         semester.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Semester", "1", "2", "3", "4", "5", "6", "7", "8", " " }));
         tb_matakuliah.add(semester, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 400, 290, 40));
@@ -1069,7 +1092,6 @@ public class home_admin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
@@ -1086,7 +1108,7 @@ public class home_admin extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jabatan_comboBox;
     private javax.swing.JPanel jadwal;
     private javax.swing.JComboBox<String> jenis_matakuliah;
-    private javax.swing.JComboBox<String> jenis_matakuliah1;
+    private javax.swing.JComboBox<String> jumlah_sks;
     private javax.swing.JButton kembaliDosen;
     private javax.swing.JButton kembaliMenu;
     public javax.swing.JPanel mainPanel;
@@ -1113,6 +1135,7 @@ public class home_admin extends javax.swing.JFrame {
     private javax.swing.JButton t_tambahMhs2;
     private javax.swing.JButton t_tambahMk;
     private javax.swing.JTable tabelDosen;
+    private javax.swing.JTable tabelMatakuliah;
     private javax.swing.JPanel tb_dosen;
     private javax.swing.JPanel tb_jadwal;
     private javax.swing.JPanel tb_matakuliah;
