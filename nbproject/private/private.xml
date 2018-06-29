@@ -12,15 +12,21 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/ran/Documents/PBO/simrekam/src/app/model/arrayList_matakuliah.java</file>
             <file>file:/home/ran/Documents/PBO/simrekam/src/app/view/main.java</file>
+            <file>file:/home/ran/Documents/PBO/simrekam/src/app/controller/ManajemenDosen2.java</file>
+            <file>file:/home/ran/Documents/PBO/simrekam/src/app/model/matakuliah.java</file>
+            <file>file:/home/ran/Documents/PBO/simrekam/src/app/controller/db.java</file>
+            <file>file:/home/ran/Documents/PBO/simrekam/src/app/model/combo_jabatan.java</file>
+            <file>file:/home/ran/Documents/PBO/simrekam/src/app/model/arrayList_matakuliah.java</file>
+            <file>file:/home/ran/Documents/PBO/simrekam/src/app/controller/ManajemenUser.java</file>
             <file>file:/home/ran/Documents/PBO/simrekam/src/app/controller/ManajemenDosen.java</file>
+            <file>file:/home/ran/Documents/PBO/simrekam/src/app/controller/ManajemenMenu.java</file>
             <file>file:/home/ran/Documents/PBO/simrekam/src/app/model/dosen.java</file>
             <file>file:/home/ran/Documents/PBO/simrekam/src/app/model/arrayList_dosen.java</file>
             <file>file:/home/ran/Documents/PBO/simrekam/src/app/view/home_admin.java</file>
-            <file>file:/home/ran/Documents/PBO/simrekam/src/app/model/matakuliah.java</file>
-            <file>file:/home/ran/Documents/PBO/simrekam/src/app/controller/ManajemenAdmin.java</file>
+            <file>file:/home/ran/Documents/PBO/simrekam/src/app/view/login.java</file>
             <file>file:/home/ran/Documents/PBO/simrekam/src/app/controller/ManajemenMataKuliah.java</file>
+            <file>file:/home/ran/Documents/PBO/simrekam/src/app/model/md_login.java</file>
         </group>
     </open-files>
 </project-private>

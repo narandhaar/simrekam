@@ -46,11 +46,11 @@ public class ManajemenUser {
                 String level = lg.login(username, password);
                 
                 if(level.equalsIgnoreCase("admin")){
-                    new ManajemenAdmin(new home_admin(), new dosen());
+                    new ManajemenMenu(new home_admin());
                     login.dispose();
                             
                 } else if (level.equalsIgnoreCase("dosen")){
-                    new ManajemenDosen();
+                    new ManajemenDosen2();
                     login.dispose();
                 } else {
                     JOptionPane.showMessageDialog(login, "Username atau Password Salah");

@@ -9,6 +9,14 @@ import app.model.matakuliah;
 import app.view.home_admin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,23 +24,39 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ran
  */
-public final class ManajemenMataKuliah {
+public final class ManajemenMataKuliah extends ManajemenMenu{
 
     private home_admin ha;
     private matakuliah mk;
 
+    String kode_matakuliah;
+    String nama_matakuliah;
+    String jenis_matakuliah;
+    String semester;
+    int jumlah_sks;
+
     public ManajemenMataKuliah(home_admin home, matakuliah matakuliah) {
+        super(home);
+        
         this.ha = home;
         this.mk = matakuliah;
-
-        ha.setVisible(true);
         ha.showCard("matakuliah");
-
+        
         setMatakuliah();
-        ha.simpanMk().addActionListener(new tambahMk());
-        ha.masukTambakMk().addActionListener(new masukTambahMk());
+        ha.simpan_tbMk().addActionListener(new tambahMk());
+        ha.t_TambahMk().addActionListener(new formTambahMk());
+        ha.t_ubahMk().addActionListener(new formUbahMk());
+        ha.tabelMatakuliah().addMouseListener(new getData());
+        ha.t_ubahMk().addActionListener(new t_ubah());
+        ha.simpan_ubahMk().addActionListener(new confirmUbahMk());
+        ha.t_batalMk().addActionListener(new batal());
+        ha.t_kembaliMk().addActionListener(new menuUtama());
+        ha.t_hapusMk().addActionListener(new hapusData());
 
     }
+
+    
+
 
     private static class menuMatakuliah implements ActionListener {
 
@@ -73,9 +97,175 @@ public final class ManajemenMataKuliah {
         ha.tabelMatakuliah().setModel(model);
     }
 
-    private class masukTambahMk implements ActionListener {
+    private class hapusData implements ActionListener {
 
-        public masukTambahMk() {
+        public hapusData() {
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           if (ha.tabelMatakuliah().getSelectedRow() < 0) {
+                JOptionPane.showMessageDialog(ha, "Pilih data terlebih dahulu");
+            } else {
+                int tombol = JOptionPane.YES_NO_OPTION;
+                int pilih = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin untuk menghapus data ini?", "Hapus", tombol);
+                if (pilih == JOptionPane.YES_OPTION) {
+                  
+                    try {
+                        mk.hapusMatakuliah(kode_matakuliah);
+                    } catch (SQLException ex) {
+                        ex.getMessage();
+                    }
+                        setMatakuliah();
+                } else if (pilih == JOptionPane.NO_OPTION){
+                    ha.showCard("matakuliah");
+                }
+//            ds.tabelDosen();
+                ha.tabelDosen().clearSelection();
+                ha.tabelDosen().setEnabled(true);
+        }
+    }
+    }
+
+    private class menuUtama implements ActionListener {
+
+        public menuUtama() {
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            new ManajemenMenu(ha);
+        }
+    }
+
+    private class batal implements ActionListener {
+
+        public batal() {
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ha.showCard("matakuliah");
+            setMatakuliah();
+        }
+    }
+
+ 
+    private class confirmUbahMk implements ActionListener {
+
+        public confirmUbahMk() {
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            nama_matakuliah = ha.getNamaMk();
+            jenis_matakuliah = ha.jenisMk().getSelectedItem().toString();
+            semester = ha.semester().getSelectedItem().toString();
+            jumlah_sks = Integer.parseInt(ha.jumlahsks().getSelectedItem().toString());
+
+            try {
+                int button = JOptionPane.YES_NO_OPTION;
+                int pilih = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin untuk mengubah data ini?", "Ubah", button);
+                if (pilih == JOptionPane.YES_OPTION) {
+
+                    mk.updateData(kode_matakuliah, nama_matakuliah, jenis_matakuliah, semester, jumlah_sks);
+
+                    JOptionPane.showMessageDialog(ha, "Data berhasil diubah");
+
+                    ha.showCard("matakuliah");
+                    setMatakuliah();
+                    ha.tabelMatakuliah().clearSelection();
+                    clearAll();
+                } else if (pilih == JOptionPane.NO_OPTION) {
+                    ha.showCard("tb_matakuliah");
+                }
+
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
+
+    private class t_ubah implements ActionListener {
+
+        public t_ubah() {
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (ha.tabelMatakuliah().getSelectedRow() < 0) {
+                JOptionPane.showMessageDialog(null, "Pilih data terlebih dahulu");
+            } else {
+                DefaultTableModel model = (DefaultTableModel) ha.tabelDosen().getModel();
+                ha.kodeMatakuliah().setText(kode_matakuliah);
+                ha.kodeMatakuliah().setEditable(false);
+                ha.namaMatakuliah().setText(nama_matakuliah);
+                ha.jenisMk().setSelectedItem(jenis_matakuliah);
+                ha.semester().setSelectedItem(semester);
+                ha.jumlahsks().setSelectedItem(String.valueOf(jumlah_sks));
+
+                ha.showCard("tb_matakuliah");
+                ha.simpan_ubahMk().setVisible(true);
+                ha.simpan_tbMk().setVisible(false);
+                ha.simpan_tbMk().invalidate();
+
+            }
+        }
+    }
+
+    private class getData implements MouseListener {
+
+        public getData() {
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            DefaultTableModel model = (DefaultTableModel) ha.tabelMatakuliah().getModel();
+            kode_matakuliah = model.getValueAt(ha.tabelMatakuliah().getSelectedRow(), 0).toString();
+            nama_matakuliah = model.getValueAt(ha.tabelMatakuliah().getSelectedRow(), 1).toString();
+            jenis_matakuliah = model.getValueAt(ha.tabelMatakuliah().getSelectedRow(), 2).toString();
+            semester = model.getValueAt(ha.tabelMatakuliah().getSelectedRow(), 3).toString();
+            jumlah_sks = Integer.parseInt(model.getValueAt(ha.tabelMatakuliah().getSelectedRow(), 4).toString());
+
+            System.out.println(kode_matakuliah);
+
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+        }
+    }
+
+    private class formUbahMk implements ActionListener {
+
+        public formUbahMk() {
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
+    private class formTambahMk implements ActionListener {
+
+        public formTambahMk() {
         }
 
         @Override
@@ -91,15 +281,20 @@ public final class ManajemenMataKuliah {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            ha.simpan_tbMk().setVisible(true);
+            ha.simpan_ubahMk().setVisible(false);
+            ha.simpan_ubahMk().invalidate();
+
             String kode_matakuliah = ha.getKodeMk();
             String nama_matakuliah = ha.getNamaMk();
-            String jenis_matakuliah = ha.getJenisMk().getSelectedItem().toString();
-            String semester = ha.getSemester().getSelectedItem().toString();
-            int jumlah_sks = Integer.parseInt(ha.getSemester().getSelectedItem().toString());
 
-            if (kode_matakuliah.trim().isEmpty() || nama_matakuliah.trim().isEmpty()) {
+            if (kode_matakuliah.trim().isEmpty() || nama_matakuliah.trim().isEmpty() || ha.jenisMk().getSelectedIndex() == -1 || ha.semester().getSelectedIndex() == -1 || ha.jumlahsks().getSelectedIndex() == -1) {
                 JOptionPane.showMessageDialog(ha, "Lengkapi data");
             } else {
+                jenis_matakuliah = ha.jenisMk().getSelectedItem().toString();
+                semester = ha.semester().getSelectedItem().toString();
+                jumlah_sks = Integer.parseInt(ha.jumlahsks().getSelectedItem().toString());
+
                 if (mk.insertMatakuliah(kode_matakuliah, nama_matakuliah, jenis_matakuliah, semester, jumlah_sks)) {
                     JOptionPane.showMessageDialog(ha, "Data berhasil ditambahkan");
 
@@ -111,6 +306,21 @@ public final class ManajemenMataKuliah {
                 }
             }
         }
+    }
+
+    public void clearAll() {
+        kode_matakuliah = "";
+        nama_matakuliah = "";
+        jenis_matakuliah = "";
+        semester = "";
+        jumlah_sks = 0;
+
+        ha.kodeMatakuliah().setText(kode_matakuliah);
+        ha.namaMatakuliah().setText(nama_matakuliah);
+        ha.jenisMk().setSelectedIndex(-1);
+        ha.semester().setSelectedIndex(-1);
+        ha.jumlahsks().setSelectedIndex(-1);
+
     }
 
 }

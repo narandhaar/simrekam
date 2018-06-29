@@ -35,7 +35,7 @@ public class matakuliah {
         arrayList_matakuliah mk;
 
         String sql = "SELECT kode_matakuliah, nama_matakuliah, jenis_matakuliah, semester, jumlah_sks\n"
-                + "	FROM public.mata_kuliah;";
+                + "	FROM public.matakuliah;";
 
         try {
             st = conn.createStatement();
@@ -59,7 +59,7 @@ public class matakuliah {
     }
 
     public boolean insertMatakuliah(String kode_matakuliah, String nama_matakuliah, String jenis_matakuliah, String semester, int jumlah_sks) {
-        String query = "INSERT INTO public.mata_kuliah(\n"
+        String query = "INSERT INTO public.matakuliah(\n"
                 + "	kode_matakuliah, nama_matakuliah, jenis_matakuliah, semester, id_matkul, jumlah_sks)\n"
                 + "	VALUES (?, ?, ?, ?, DEFAULT, ?);";
 
@@ -83,4 +83,27 @@ public class matakuliah {
         return hasil;
     }
 
+    public void updateData(String kodeMatakuliah, String namaMatakuliah, String jenisMatakuliah, String semester, int jumlahSks) throws SQLException {
+        String sql = "UPDATE public.matakuliah\n"
+                + "	SET nama_matakuliah=?, jenis_matakuliah=?, semester=?, jumlah_sks=?\n"
+                + "	WHERE kode_matakuliah=?";
+        PreparedStatement st = conn.prepareStatement(sql);
+
+        st.setString(1, namaMatakuliah);
+        st.setString(2, jenisMatakuliah);
+        st.setString(3, semester);
+        st.setInt(4, jumlahSks);
+        st.setString(5, kodeMatakuliah);
+
+        st.executeUpdate();
+    }
+
+    public void hapusMatakuliah(String kode_matakuliah) throws SQLException {
+        String sql = "DELETE FROM public.matakuliah\n"
+                + "	WHERE kode_matakuliah=?;";
+        PreparedStatement st = conn.prepareStatement(sql);
+        st.setString(1, kode_matakuliah);
+        st.executeUpdate();
+        
+    }
 }

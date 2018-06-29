@@ -5,7 +5,7 @@
  */
 package app.view;
 
-import app.controller.ManajemenDosen;
+import app.controller.ManajemenDosen2;
 import app.controller.ManajemenUser;
 import app.controller.db;
 import app.model.md_login;

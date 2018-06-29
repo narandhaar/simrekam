@@ -48,6 +48,7 @@ public class home_admin extends javax.swing.JFrame {
         mainPanel.add("dosen", dosen);
         mainPanel.add("rk_dosen", rekapanDosen);
         mainPanel.add("rk_mahasiswa", rekapanMahasiswa);
+        
 //
 //        comboBox();
 
@@ -128,7 +129,7 @@ public class home_admin extends javax.swing.JFrame {
         t.setModel(tabel);
     }
 
-    public JButton dosenButton() {
+    public JButton menuDosen() {
         return t_dosen;
     }
 
@@ -184,7 +185,7 @@ public class home_admin extends javax.swing.JFrame {
         return tabelMatakuliah;
     }
 
-    public JButton simpanMk() {
+    public JButton simpan_tbMk() {
         return simpan_tbMk;
     }
 
@@ -196,21 +197,55 @@ public class home_admin extends javax.swing.JFrame {
         return txt_nama_matakuliah.getText();
     }
 
-    public JComboBox getJenisMk() {
+    public JComboBox jenisMk() {
         return jenis_matakuliah;
     }
 
-    public JComboBox getSemester() {
+    public JComboBox semester() {
         return semester;
     }
 
-    public JComboBox getJumlahsks() {
+    public JComboBox jumlahsks() {
         return jumlah_sks;
     }
 
-    public JButton masukTambakMk(){
+    public JButton t_TambahMk() {
         return t_tambahMk;
     }
+
+    public JButton t_ubahMk() {
+        return t_ubah;
+    }
+
+    public JTextField kodeMatakuliah(){
+        return txt_kode_matakuliah;
+    }
+
+    public JTextField namaMatakuliah() {
+        return txt_nama_matakuliah;
+    }
+    
+    public JButton simpan_ubahMk(){
+        return simpan_ubahMk;
+    }
+    
+    public JButton t_batalMk(){
+        return t_batalMk;
+    }
+    
+    public JButton t_kembaliMk(){
+        return t_kembaliMk;
+    }
+    
+    public JButton t_hapusMk(){
+        return t_hapusMk;
+    }
+  
+    public JButton menuMk(){
+        return t_matakuliah;
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -280,9 +315,10 @@ public class home_admin extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
         jButton10 = new javax.swing.JButton();
-        hapusDosen2 = new javax.swing.JButton();
+        t_hapusMk = new javax.swing.JButton();
         t_tambahMk = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        t_kembaliMk = new javax.swing.JButton();
+        t_ubah = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         tb_matakuliah = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
@@ -295,8 +331,9 @@ public class home_admin extends javax.swing.JFrame {
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         txt_nama_matakuliah = new javax.swing.JTextField();
-        batal_tbMk = new javax.swing.JButton();
+        t_batalMk = new javax.swing.JButton();
         simpan_tbMk = new javax.swing.JButton();
+        simpan_ubahMk = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         rekapanDosen = new javax.swing.JPanel();
         jTextField2 = new javax.swing.JTextField();
@@ -596,299 +633,309 @@ public class home_admin extends javax.swing.JFrame {
             new String [] {
                 "Kode Matakuliah", "Nama Matakuliah", "Jenis Matakuliah", "Jumlah SKS", "Semester"
             }
-        ));
-        jScrollPane3.setViewportView(tabelMatakuliah);
+        )
+    );
+    jScrollPane3.setViewportView(tabelMatakuliah);
 
-        matakuliah.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 1220, 190));
+    matakuliah.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 1220, 190));
 
-        jLabel20.setText("Filter");
-        matakuliah.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, -1, -1));
+    jLabel20.setText("Filter");
+    matakuliah.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, -1, -1));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kode Matakuliah", "Item 2", "Item 3", "Item 4" }));
-        matakuliah.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 160, 30));
+    jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kode Matakuliah", "Item 2", "Item 3", "Item 4" }));
+    matakuliah.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 160, 30));
 
-        jButton10.setText("Cari");
-        matakuliah.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, 70, 30));
+    jButton10.setText("Cari");
+    matakuliah.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, 70, 30));
 
-        hapusDosen2.setText("Hapus");
-        hapusDosen2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hapusDosen2ActionPerformed(evt);
-            }
-        });
-        matakuliah.add(hapusDosen2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 450, -1, -1));
+    t_hapusMk.setText("Hapus");
+    t_hapusMk.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            t_hapusMkActionPerformed(evt);
+        }
+    });
+    matakuliah.add(t_hapusMk, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 450, 80, -1));
 
-        t_tambahMk.setText("Tambah");
-        matakuliah.add(t_tambahMk, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 450, -1, -1));
+    t_tambahMk.setText("Tambah");
+    matakuliah.add(t_tambahMk, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 450, -1, -1));
 
-        jButton12.setText("Kembali");
-        matakuliah.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+    t_kembaliMk.setText("Kembali");
+    matakuliah.add(t_kembaliMk, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/matkul_1.png"))); // NOI18N
-        matakuliah.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 620));
+    t_ubah.setText("Ubah");
+    matakuliah.add(t_ubah, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 450, 80, -1));
 
-        mainPanel.add(matakuliah, "card3");
+    jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/matkul_1.png"))); // NOI18N
+    matakuliah.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 620));
 
-        tb_matakuliah.setPreferredSize(new java.awt.Dimension(1081, 618));
-        tb_matakuliah.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+    mainPanel.add(matakuliah, "card3");
 
-        jLabel25.setText("Kode Matakuliah        :");
-        tb_matakuliah.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, -1, -1));
-        tb_matakuliah.add(txt_kode_matakuliah, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 290, 34));
+    tb_matakuliah.setPreferredSize(new java.awt.Dimension(1081, 618));
+    tb_matakuliah.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel26.setText("Nama Matakuliah       :");
-        tb_matakuliah.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, -1, -1));
+    jLabel25.setText("Kode Matakuliah        :");
+    tb_matakuliah.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, -1, -1));
+    tb_matakuliah.add(txt_kode_matakuliah, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, 290, 34));
 
-        jLabel28.setText("Semester                   :");
-        tb_matakuliah.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, -1, -1));
+    jLabel26.setText("Nama Matakuliah       :");
+    tb_matakuliah.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, -1, -1));
 
-        jumlah_sks.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Jumlah SKS", "1", "2", "3" }));
-        tb_matakuliah.add(jumlah_sks, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 290, 40));
+    jLabel28.setText("Semester                   :");
+    tb_matakuliah.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, -1, -1));
 
-        semester.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Semester", "1", "2", "3", "4", "5", "6", "7", "8", " " }));
-        tb_matakuliah.add(semester, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 400, 290, 40));
+    jumlah_sks.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
+    jumlah_sks.setSelectedIndex(-1);
+    tb_matakuliah.add(jumlah_sks, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 290, 40));
 
-        jenis_matakuliah.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Jenis Matakuliah", "Universitas", "Fakultas", "Program Studi" }));
-        tb_matakuliah.add(jenis_matakuliah, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 290, 40));
+    semester.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", " " }));
+    semester.setSelectedIndex(-1);
+    tb_matakuliah.add(semester, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 400, 290, 40));
 
-        jLabel30.setText("Jenis Matakuliah        :");
-        tb_matakuliah.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, -1, -1));
+    jenis_matakuliah.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Universitas", "Fakultas", "Program Studi" }));
+    jenis_matakuliah.setSelectedIndex(-1);
+    tb_matakuliah.add(jenis_matakuliah, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 290, 40));
+
+    jLabel30.setText("Jenis Matakuliah        :");
+    tb_matakuliah.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 310, -1, -1));
 
-        jLabel31.setText("Jumlah SKS                 :");
-        tb_matakuliah.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, -1, -1));
-        tb_matakuliah.add(txt_nama_matakuliah, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, 290, 34));
+    jLabel31.setText("Jumlah SKS                 :");
+    tb_matakuliah.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, -1, -1));
+    tb_matakuliah.add(txt_nama_matakuliah, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, 290, 34));
 
-        batal_tbMk.setText("Batal");
-        tb_matakuliah.add(batal_tbMk, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 470, 100, 40));
+    t_batalMk.setText("Batal");
+    tb_matakuliah.add(t_batalMk, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 470, 100, 40));
 
-        simpan_tbMk.setText("Simpan");
-        tb_matakuliah.add(simpan_tbMk, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 100, 40));
-        tb_matakuliah.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 620));
+    simpan_tbMk.setText("Simpan");
+    tb_matakuliah.add(simpan_tbMk, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 100, 40));
 
-        mainPanel.add(tb_matakuliah, "card3");
+    simpan_ubahMk.setText("Simpan");
+    tb_matakuliah.add(simpan_ubahMk, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 100, 40));
+    tb_matakuliah.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 620));
 
-        rekapanDosen.setMaximumSize(new java.awt.Dimension(1081, 618));
-        rekapanDosen.setMinimumSize(new java.awt.Dimension(1081, 618));
-        rekapanDosen.setPreferredSize(new java.awt.Dimension(1366, 618));
-        rekapanDosen.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+    mainPanel.add(tb_matakuliah, "card3");
 
-        jTextField2.setText("Cari ...");
-        rekapanDosen.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 280, 30));
+    rekapanDosen.setMaximumSize(new java.awt.Dimension(1081, 618));
+    rekapanDosen.setMinimumSize(new java.awt.Dimension(1081, 618));
+    rekapanDosen.setPreferredSize(new java.awt.Dimension(1366, 618));
+    rekapanDosen.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel17.setText("Filter");
-        rekapanDosen.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, -1, -1));
+    jTextField2.setText("Cari ...");
+    rekapanDosen.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 280, 30));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matakuliah", "Item 2", "Item 3", "Item 4" }));
-        rekapanDosen.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 160, 30));
+    jLabel17.setText("Filter");
+    rekapanDosen.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, -1, -1));
 
-        jButton6.setText("Cari");
-        rekapanDosen.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 170, 70, 30));
+    jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matakuliah", "Item 2", "Item 3", "Item 4" }));
+    rekapanDosen.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 160, 30));
 
-        jButton7.setText("Kembali");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        rekapanDosen.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+    jButton6.setText("Cari");
+    rekapanDosen.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 170, 70, 30));
 
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "No", "Hari", "Tanggal", "Kode Matakuliah", "Matakuliah", "Dosen", "Pertemuan", "Materi"
-            }
-        ));
-        jScrollPane5.setViewportView(jTable5);
-
-        rekapanDosen.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 1260, 90));
-
-        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/rekap_1.png"))); // NOI18N
-        rekapanDosen.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 620));
-
-        mainPanel.add(rekapanDosen, "card3");
-
-        rekapanMahasiswa.setMaximumSize(new java.awt.Dimension(1081, 618));
-        rekapanMahasiswa.setMinimumSize(new java.awt.Dimension(1081, 618));
-        rekapanMahasiswa.setPreferredSize(new java.awt.Dimension(1081, 618));
-        rekapanMahasiswa.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTextField7.setText("Cari ...");
-        rekapanMahasiswa.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 280, 30));
-
-        jLabel27.setText("Filter");
-        rekapanMahasiswa.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, -1, -1));
-
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matakuliah", "Item 2", "Item 3", "Item 4" }));
-        rekapanMahasiswa.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 160, 30));
-
-        jButton8.setText("Cari");
-        rekapanMahasiswa.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 170, 70, 30));
-
-        jButton15.setText("Kembali");
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
-            }
-        });
-        rekapanMahasiswa.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
-
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "No", "NIM", "Nama ", "Sakit", "Ijin", "Alpha", "Total Kehadiran", "Persentase", "Status"
-            }
-        ));
-        jScrollPane6.setViewportView(jTable6);
-
-        rekapanMahasiswa.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 1260, 90));
-
-        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/rekap_1.png"))); // NOI18N
-        rekapanMahasiswa.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 620));
-
-        mainPanel.add(rekapanMahasiswa, "card3");
-
-        biodata.setPreferredSize(new java.awt.Dimension(1366, 618));
-        biodata.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        biodata.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, 320, 30));
-
-        jRadioButton1.setText("Perempuan");
-        biodata.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, -1, -1));
-
-        jRadioButton2.setText("Laki-laki");
-        biodata.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, -1, -1));
-
-        jLabel34.setText("Nama                        :");
-        biodata.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, -1, -1));
-        biodata.add(namaDosen1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 320, 30));
-
-        jLabel35.setText("Tanggal Lahir          :");
-        biodata.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, -1, -1));
-
-        jLabel36.setText("Jenis Kelamin           :");
-        biodata.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, -1, -1));
-
-        jButton17.setText("Kembali");
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
-            }
-        });
-        biodata.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 430, -1, -1));
-
-        simpanDosen1.setText("Simpan");
-        simpanDosen1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                simpanDosen1ActionPerformed(evt);
-            }
-        });
-        biodata.add(simpanDosen1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, -1, -1));
-
-        mainPanel.add(biodata, "card4");
-
-        dosen.setMaximumSize(new java.awt.Dimension(1081, 618));
-        dosen.setMinimumSize(new java.awt.Dimension(1081, 618));
-        dosen.setPreferredSize(new java.awt.Dimension(1355, 615));
-        dosen.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTextField1.setText("Cari ...");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        dosen.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 280, 30));
-
-        jLabel4.setText("Filter");
-        dosen.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, -1, 30));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIP", "Item 2", "Item 3", "Item 4" }));
-        dosen.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 90, 30));
-
-        jButton1.setText("Cari");
-        dosen.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 180, 70, 30));
-
-        hapusDosen.setText("Hapus");
-        hapusDosen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hapusDosenActionPerformed(evt);
-            }
-        });
-        dosen.add(hapusDosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(966, 360, 90, -1));
-
-        t_tambahDosen.setText("Tambah");
-        t_tambahDosen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                t_tambahDosenActionPerformed(evt);
-            }
-        });
-        dosen.add(t_tambahDosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(1188, 360, 100, -1));
-
-        ubah.setText("Update");
-        dosen.add(ubah, new org.netbeans.lib.awtextra.AbsoluteConstraints(1083, 360, 90, -1));
-
-        kembaliMenu.setText("Kembali");
-        kembaliMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kembaliMenuActionPerformed(evt);
-            }
-        });
-        dosen.add(kembaliMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
-
-        tabelDosen.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        bgTable.setViewportView(tabelDosen);
-
-        dosen.add(bgTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 1250, 110));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/dsn_1.png"))); // NOI18N
-        dosen.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1330, 620));
-
-        mainPanel.add(dosen, "card3");
-
-        getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 1355, 615));
-
-        panelAtas.setLayout(null);
-
-        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/logout(3).png"))); // NOI18N
-        jButton16.setBorderPainted(false);
-        jButton16.setContentAreaFilled(false);
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
-            }
-        });
-        panelAtas.add(jButton16);
-        jButton16.setBounds(1150, 0, 170, 150);
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/panelAtas.png"))); // NOI18N
-        panelAtas.add(jLabel3);
-        jLabel3.setBounds(10, 0, 1330, 149);
-
-        getContentPane().add(panelAtas, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1380, 150));
-
-        jLabel38.setText("jLabel38");
-        getContentPane().add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, 678));
-
-        pack();
+    jButton7.setText("Kembali");
+    jButton7.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton7ActionPerformed(evt);
+        }
+    });
+    rekapanDosen.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+    jTable5.setModel(new javax.swing.table.DefaultTableModel(
+        new Object [][] {
+            {null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null}
+        },
+        new String [] {
+            "No", "Hari", "Tanggal", "Kode Matakuliah", "Matakuliah", "Dosen", "Pertemuan", "Materi"
+        }
+    ));
+    jScrollPane5.setViewportView(jTable5);
+
+    rekapanDosen.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 1260, 90));
+
+    jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/rekap_1.png"))); // NOI18N
+    rekapanDosen.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 620));
+
+    mainPanel.add(rekapanDosen, "card3");
+
+    rekapanMahasiswa.setMaximumSize(new java.awt.Dimension(1081, 618));
+    rekapanMahasiswa.setMinimumSize(new java.awt.Dimension(1081, 618));
+    rekapanMahasiswa.setPreferredSize(new java.awt.Dimension(1081, 618));
+    rekapanMahasiswa.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+    jTextField7.setText("Cari ...");
+    rekapanMahasiswa.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 280, 30));
+
+    jLabel27.setText("Filter");
+    rekapanMahasiswa.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, -1, -1));
+
+    jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matakuliah", "Item 2", "Item 3", "Item 4" }));
+    rekapanMahasiswa.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, 160, 30));
+
+    jButton8.setText("Cari");
+    rekapanMahasiswa.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 170, 70, 30));
+
+    jButton15.setText("Kembali");
+    jButton15.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton15ActionPerformed(evt);
+        }
+    });
+    rekapanMahasiswa.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+    jTable6.setModel(new javax.swing.table.DefaultTableModel(
+        new Object [][] {
+            {null, null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null, null},
+            {null, null, null, null, null, null, null, null, null}
+        },
+        new String [] {
+            "No", "NIM", "Nama ", "Sakit", "Ijin", "Alpha", "Total Kehadiran", "Persentase", "Status"
+        }
+    ));
+    jScrollPane6.setViewportView(jTable6);
+
+    rekapanMahasiswa.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 1260, 90));
+
+    jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/rekap_1.png"))); // NOI18N
+    rekapanMahasiswa.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 620));
+
+    mainPanel.add(rekapanMahasiswa, "card3");
+
+    biodata.setPreferredSize(new java.awt.Dimension(1366, 618));
+    biodata.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+    biodata.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, 320, 30));
+
+    jRadioButton1.setText("Perempuan");
+    biodata.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, -1, -1));
+
+    jRadioButton2.setText("Laki-laki");
+    biodata.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 290, -1, -1));
+
+    jLabel34.setText("Nama                        :");
+    biodata.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, -1, -1));
+    biodata.add(namaDosen1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 320, 30));
+
+    jLabel35.setText("Tanggal Lahir          :");
+    biodata.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, -1, -1));
+
+    jLabel36.setText("Jenis Kelamin           :");
+    biodata.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, -1, -1));
+
+    jButton17.setText("Kembali");
+    jButton17.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton17ActionPerformed(evt);
+        }
+    });
+    biodata.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 430, -1, -1));
+
+    simpanDosen1.setText("Simpan");
+    simpanDosen1.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            simpanDosen1ActionPerformed(evt);
+        }
+    });
+    biodata.add(simpanDosen1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 430, -1, -1));
+
+    mainPanel.add(biodata, "card4");
+
+    dosen.setMaximumSize(new java.awt.Dimension(1081, 618));
+    dosen.setMinimumSize(new java.awt.Dimension(1081, 618));
+    dosen.setPreferredSize(new java.awt.Dimension(1355, 615));
+    dosen.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+    jTextField1.setText("Cari ...");
+    jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jTextField1ActionPerformed(evt);
+        }
+    });
+    dosen.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 280, 30));
+
+    jLabel4.setText("Filter");
+    dosen.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, -1, 30));
+
+    jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIP", "Item 2", "Item 3", "Item 4" }));
+    dosen.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, 90, 30));
+
+    jButton1.setText("Cari");
+    dosen.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 180, 70, 30));
+
+    hapusDosen.setText("Hapus");
+    hapusDosen.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            hapusDosenActionPerformed(evt);
+        }
+    });
+    dosen.add(hapusDosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(966, 360, 90, -1));
+
+    t_tambahDosen.setText("Tambah");
+    t_tambahDosen.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            t_tambahDosenActionPerformed(evt);
+        }
+    });
+    dosen.add(t_tambahDosen, new org.netbeans.lib.awtextra.AbsoluteConstraints(1188, 360, 100, -1));
+
+    ubah.setText("Update");
+    dosen.add(ubah, new org.netbeans.lib.awtextra.AbsoluteConstraints(1083, 360, 90, -1));
+
+    kembaliMenu.setText("Kembali");
+    kembaliMenu.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            kembaliMenuActionPerformed(evt);
+        }
+    });
+    dosen.add(kembaliMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+    tabelDosen.setModel(new javax.swing.table.DefaultTableModel(
+        new Object [][] {
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null}
+        },
+        new String [] {
+            "Title 1", "Title 2", "Title 3", "Title 4"
+        }
+    ));
+    bgTable.setViewportView(tabelDosen);
+
+    dosen.add(bgTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 1250, 110));
+
+    jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/dsn_1.png"))); // NOI18N
+    dosen.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1330, 620));
+
+    mainPanel.add(dosen, "card3");
+
+    getContentPane().add(mainPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 1355, 615));
+
+    panelAtas.setLayout(null);
+
+    jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/logout(3).png"))); // NOI18N
+    jButton16.setBorderPainted(false);
+    jButton16.setContentAreaFilled(false);
+    jButton16.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton16ActionPerformed(evt);
+        }
+    });
+    panelAtas.add(jButton16);
+    jButton16.setBounds(1150, 0, 170, 150);
+
+    jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/source/panelAtas.png"))); // NOI18N
+    panelAtas.add(jLabel3);
+    jLabel3.setBounds(10, 0, 1330, 149);
+
+    getContentPane().add(panelAtas, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 1380, 150));
+
+    jLabel38.setText("jLabel38");
+    getContentPane().add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1366, 678));
+
+    pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void t_dosenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_dosenActionPerformed
@@ -913,9 +960,9 @@ public class home_admin extends javax.swing.JFrame {
 
     }//GEN-LAST:event_t_tambahMhs2ActionPerformed
 
-    private void hapusDosen2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hapusDosen2ActionPerformed
+    private void t_hapusMkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_t_hapusMkActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_hapusDosen2ActionPerformed
+    }//GEN-LAST:event_t_hapusMkActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
 
@@ -1022,17 +1069,14 @@ public class home_admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton batal_tbMk;
     private javax.swing.JScrollPane bgTable;
     private javax.swing.JPanel biodata;
     public javax.swing.JPanel dosen;
     private javax.swing.JButton hapusDosen;
-    private javax.swing.JButton hapusDosen2;
     private javax.swing.JButton hapusDosen3;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
@@ -1125,8 +1169,12 @@ public class home_admin extends javax.swing.JFrame {
     private javax.swing.JButton simpanDosen;
     private javax.swing.JButton simpanDosen1;
     private javax.swing.JButton simpan_tbMk;
+    private javax.swing.JButton simpan_ubahMk;
+    private javax.swing.JButton t_batalMk;
     private javax.swing.JButton t_dosen;
+    private javax.swing.JButton t_hapusMk;
     private javax.swing.JButton t_jadwal;
+    private javax.swing.JButton t_kembaliMk;
     private javax.swing.JButton t_matakuliah;
     private javax.swing.JButton t_rekapDosen;
     private javax.swing.JButton t_rekapMahasiswa;
@@ -1134,6 +1182,7 @@ public class home_admin extends javax.swing.JFrame {
     private javax.swing.JButton t_tambahMhs1;
     private javax.swing.JButton t_tambahMhs2;
     private javax.swing.JButton t_tambahMk;
+    private javax.swing.JButton t_ubah;
     private javax.swing.JTable tabelDosen;
     private javax.swing.JTable tabelMatakuliah;
     private javax.swing.JPanel tb_dosen;

@@ -1,6 +1,6 @@
 package app.view;
 
-import app.controller.ManajemenDosen;
+import app.controller.ManajemenDosen2;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -20,7 +20,7 @@ public class home_dosen extends javax.swing.JFrame {
     /**
      * Creates new form home_admin
      */
-    private ManajemenDosen ctrl_adm;
+    private ManajemenDosen2 ctrl_adm;
     
     public home_dosen() {
         initComponents();
